@@ -83,7 +83,7 @@ body {
     height: 50px;
 }
 
-.navbar .top button {
+.sidebar-toggle-button {
     height: 30px;
     background-color: transparent;
     border: none;
@@ -242,6 +242,14 @@ body {
 
 .content {
     background-color: var(--dark-two);
+}
+
+.content #navbar-toggle-from-main {
+    display: none;
+}
+
+.content .sidebar-toggle-button img {
+    height: 30px;
 }
 
 /* Footer */
