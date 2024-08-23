@@ -13,10 +13,10 @@ const collapseSidebar = (function() {
 
 const displayMainPageSideBar = (function() {
     navBarCollapseButtonFromSidebar.addEventListener('click', () => {
-        navbarCollapseButtonFromMain.style.display = 'flex';
+        navbarCollapseButtonFromMain.style.left = '20px';
     })
 
     navbarCollapseButtonFromMain.addEventListener('click', () => {
-        navbarCollapseButtonFromMain.style.display = 'none';
+        navbarCollapseButtonFromMain.style.left = '-100%';
     })
 })();

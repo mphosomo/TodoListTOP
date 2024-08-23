@@ -242,10 +242,23 @@ body {
 
 .content {
     background-color: var(--dark-two);
+    display: flex;
+    flex-direction: column;
 }
 
-.content #navbar-toggle-from-main {
-    display: none;
+.content > .top {
+    position: relative;
+    padding: 5px 20px;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.content > .top #navbar-toggle-from-main {
+    position: absolute;
+    left: -100%;
+    transition: all var(--default-transition-speed) ease-in-out;
 }
 
 .content .sidebar-toggle-button img {
