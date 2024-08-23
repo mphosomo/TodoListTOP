@@ -1,3 +1,9 @@
-import "./style.css"
+import "./style.css";
+import { adjustContainer } from "./scripts/projectContainerOverflow";
+import { collapseSidebar } from "./scripts/navbarCollapse";
 
-console.log('Welcome, Fantom');
+const collapseNavBar = (() => {
+    collapseSidebar();
+})();
+
+adjustContainer();

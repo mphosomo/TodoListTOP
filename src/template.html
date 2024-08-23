@@ -7,73 +7,57 @@
 </head>
 <body>
     <div class="container">
-        <aside class="navbar">
-            <div class="top">
-                <div class="left">
-                    <div class="logo"></div>
-                </div>
-
-                <div class="right">
-                    <img src="assets/images/sidebar.png" alt="Sidebar Toggle Icon" class="sidebar-toggle">
-                </div>
-            </div>
-
-            <div class="middle">
-                <div class="tasks">
-                    <div class="all">
-                        <div class="left">
-                            <img src="assets/images/list.png" alt="Task Image">
-                        </div>
-
-                        <div class="middle">
-                            <p>All</p>
-                        </div>
-
-                        <div class="right">
-                            <p class="count">0</p>
+        <div class="top">
+            <aside class="navbar">
+                <div class="top">
+                    <div class="left">
+                        <div class="logo">
+                            <img src="assets/images/TooDue Logo Transparent Resized.png" alt="Logo">
                         </div>
                     </div>
-
-                    <div class="today">
-                        <div class="left">
-                            <img src="assets/images/day.png" alt="Task Image">
-                        </div>
-
-                        <div class="middle">
-                            <p>Today</p>
-                        </div>
-
-                        <div class="right">
-                            <p class="count">0</p>
-                        </div>
-                    </div>
-
-                    <div class="complete">
-                        <div class="left">
-                            <img src="assets/images/complete.png" alt="Task Image">
-                        </div>
-
-                        <div class="middle">
-                            <p>Complete</p>
-                        </div>
-
-                        <div class="right">
-                            <p class="count">0</p>
-                        </div>
+    
+                    <div class="right">
+                        <button type="button" class="navbar-button"><img src="assets/images/sidebar.png" alt="Sidebar Toggle Icon" class="sidebar-toggle" id="navbar-toggle-from-sidebar"></button>
                     </div>
                 </div>
-
-                <div class="projects">
-                    <p>Projects</p>
-
-                    <div class="project-container">
-                        <div class="demo-project">
+    
+                <div class="middle">
+                    <div class="tasks">
+                        <div class="all">
                             <div class="left">
-                                <img src="assets/images/bullet-point.png" alt="Project Image">
+                                <img src="assets/images/list.png" alt="Task Image">
                             </div>
     
                             <div class="middle">
-                                <p class="project-name">Demo Project</p>
+                                <p>All</p>
+                            </div>
+    
+                            <div class="right">
+                                <p class="count">0</p>
+                            </div>
+                        </div>
+    
+                        <div class="today">
+                            <div class="left">
+                                <img src="assets/images/day.png" alt="Task Image">
+                            </div>
+    
+                            <div class="middle">
+                                <p>Today</p>
+                            </div>
+    
+                            <div class="right">
+                                <p class="count">0</p>
+                            </div>
+                        </div>
+    
+                        <div class="complete">
+                            <div class="left">
+                                <img src="assets/images/complete.png" alt="Task Image">
+                            </div>
+    
+                            <div class="middle">
+                                <p>Complete</p>
                             </div>
     
                             <div class="right">
@@ -81,45 +65,53 @@
                             </div>
                         </div>
                     </div>
-
-                    <button type="button" class="add">New Project</button>
-
-                    <div class="add-project-container">
-                        <div class="top">
-                            <input type="text" name="project name" id="project-name">
-                        </div>
-
-                        <div class="bottom">
-                            <div class="left">
-                                <button type="button" class="cancel">cancel</button>
+    
+                    <div class="projects">
+                        <p>Projects</p>
+    
+                        <section>
+                            <div class="project-container">
+                                <div class="project">
+                                    <div class="left">
+                                        <img src="assets/images/bullet-point.png" alt="Project Image">
+                                    </div>
+            
+                                    <div class="middle">
+                                        <p class="project-name">Demo Project</p>
+                                    </div>
+            
+                                    <div class="right">
+                                        <p class="count">0</p>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="right">
-                                <button type="button" class="add">Add</button>
+        
+                            <button type="button" class="add">New Project</button>
+        
+                            <div class="add-project-container">
+                                <div class="top">
+                                    <input type="text" name="project name" id="project-name" placeholder="Project Name">
+                                </div>
+        
+                                <div class="bottom">
+                                    <div class="left">
+                                        <button type="button" class="cancel">cancel</button>
+                                    </div>
+        
+                                    <div class="right">
+                                        <button type="button" class="add">Add</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
-            </div>
-
-            <div class="profile-container">
-                <div class="left">
-                    <img src="assets/images/spongebob.jpg" alt="User Profile Picture">
-                </div>
-
-                <div class="middle">
-                    <p id="username">@Username</p>
-                </div>
-
-                <div class="right">
-                    <button type="button"><img src="assets/images/settings.png" alt="Settings Button"></button>
-                </div>
-            </div>
-        </aside>
-
-        <main class="content">
-
-        </main>
+            </aside>
+    
+            <main class="content">
+                
+            </main>
+        </div>
 
         <footer class="footer">
             <div class="left"></div>

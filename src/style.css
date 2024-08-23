@@ -1,0 +1,264 @@
+:root {
+    --dark-one: #03002e;
+    --dark-two: #010048;
+    --dark-three: #010057;
+    --dark-four: #02006c;
+    --dark-five: #090088;
+    --font-color: #fff;
+    --border-color: #000;
+    --default-transition-speed: 150ms;
+    --confirm-color: #51fc3a;
+    --confirm-hover-color: #4edb3b;
+    --cancel-color: #ff3333;
+    --cancel-hover-color: #df3b3b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+    color: var(--font-color);
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container > .top {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.container > .top aside {
+    width: 25%;
+    transition: all var(--default-transition-speed) ease-in-out;
+}
+
+.container > .top aside.closed {
+    width: 0%;
+}
+
+.container > .top main {
+    width: 100%;
+}
+
+/* Navigation Bar */
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-one);
+    overflow: hidden;
+}
+
+.navbar p {
+    text-overflow: ellipsis;
+}
+
+.navbar img {
+    height: 30px;
+}
+
+.navbar .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+}
+
+.navbar .top .logo {
+    cursor: pointer;
+}
+
+.navbar .top .logo img {
+    height: 50px;
+}
+
+.navbar .top button {
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.navbar > * {
+    width: 100%;
+}
+
+.navbar .middle .tasks {
+    padding: 10px;
+}
+
+.navbar .middle .tasks > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all var(--default-transition-speed) ease-in-out;
+}
+
+.navbar .middle .tasks > div:hover {
+    background-color: var(--dark-two);
+}
+
+.navbar .middle .tasks > div .middle {
+    height: 100%;
+    width: 60%;
+}
+
+.navbar .middle .tasks > div img {
+    height: 20px;
+}
+
+.navbar .middle .projects {
+    padding: 10px;
+}
+
+.navbar .middle .projects > p {
+    margin-bottom: 10px;
+}
+
+.navbar .middle .projects .project-container {
+    overflow-x: hidden;
+    margin-bottom: 5px;
+}
+
+.navbar .middle .projects .project-container .project {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    cursor: pointer;
+    overflow-x: hidden;
+    transition: all var(--default-transition-speed) ease-in-out;
+}
+
+.navbar .middle .projects .project-container .project:hover {
+    background-color: var(--dark-two);
+}
+
+.navbar .middle .projects img {
+    height: 20px;
+}
+
+.navbar .middle .projects section .project-container .project .middle {
+    width: 60%;
+    text-overflow: ellipsis;
+    direction: ltr;
+}
+
+.navbar .middle .projects section .project-container .project .middle p {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.navbar .middle .projects section > button {
+    cursor: pointer;
+    width: 100%;
+    padding: 15px 10px;
+    margin-bottom: 5px;
+    background-color: var(--dark-three);
+    color: var(--font-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    transition: all var(--default-transition-speed) ease-in-out;
+}
+
+.navbar .middle .projects section > button:hover {
+    background-color: var(--dark-four);
+}
+
+.navbar .middle .projects .add-project-container {
+    display: none;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.navbar .middle .projects .add-project-container .top {
+    padding: 5px;
+}
+
+.navbar .middle .projects .add-project-container input {
+    width: 100%;
+    padding: 10px 10px;
+    outline: none;
+}
+
+.navbar .middle .projects .add-project-container .bottom {
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    padding-top: 0px;
+}
+
+.navbar .middle .projects .add-project-container .bottom > div {
+    width: 100%;
+}
+
+.navbar .middle .projects .add-project-container .bottom button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all var(--default-transition-speed) ease-in-out;
+}
+
+.navbar .middle .projects .add-project-container .bottom .cancel {
+    background-color: var(--cancel-color);
+}
+
+.navbar .middle .projects .add-project-container .bottom .cancel:hover {
+    background-color: var(--cancel-hover-color);
+}
+
+.navbar .middle .projects .add-project-container .bottom .add {
+    background-color: var(--confirm-color);
+}
+
+.navbar .middle .projects .add-project-container .bottom .add:hover {
+    background-color: var(--confirm-hover-color);
+}
+
+.navbar .count {
+    opacity: 60%;
+}
+
+/* Main Content */
+
+.content {
+    background-color: var(--dark-two);
+}
+
+/* Footer */
+
+.footer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--dark-four);
+}
+
+.footer div {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
