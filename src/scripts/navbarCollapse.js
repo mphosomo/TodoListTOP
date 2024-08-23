@@ -15,4 +15,8 @@ const displayMainPageSideBar = (function() {
     navBarCollapseButtonFromSidebar.addEventListener('click', () => {
         navbarCollapseButtonFromMain.style.display = 'flex';
     })
+
+    navbarCollapseButtonFromMain.addEventListener('click', () => {
+        navbarCollapseButtonFromMain.style.display = 'none';
+    })
 })();
