@@ -1,9 +1,4 @@
 import "./style.css";
-import { adjustContainer } from "./scripts/projectContainerOverflow";
-import { collapseSidebar } from "./scripts/navbarCollapse";
-
-const collapseNavBar = (() => {
-    collapseSidebar();
-})();
-
-adjustContainer();
+import "./scripts/gitButtonClick";
+import "./scripts/projectContainerOverflow";
+import "./scripts/navbarCollapse";
