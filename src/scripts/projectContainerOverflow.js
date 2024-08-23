@@ -1,7 +1,7 @@
 const projectContainer = document.querySelector('.project-container');
 const maxChildrenBeforeOverflow = 3;
 
-function adjustContainer() {
+export function adjustContainer() {
     if(projectContainer.children.length > maxChildrenBeforeOverflow) {
         projectContainer.style.overflowY = 'auto';
         projectContainer.style.height = '150px';
@@ -9,5 +9,3 @@ function adjustContainer() {
         projectContainer.style.overflowY = 'hidden';
     }
 }
-
-adjustContainer();
