@@ -1,296 +1,294 @@
 :root {
-    --dark-one: #03002e;
-    --dark-two: #010048;
-    --dark-three: #010057;
-    --dark-four: #02006c;
-    --dark-five: #090088;
-    --font-color: #fff;
-    --border-color: #000;
-    --default-transition-speed: 150ms;
-    --confirm-color: #51fc3a;
-    --confirm-hover-color: #4edb3b;
-    --cancel-color: #ff3333;
-    --cancel-hover-color: #df3b3b;
+	--dark-one: #03002e;
+	--dark-two: #010048;
+	--dark-three: #010057;
+	--dark-four: #02006c;
+	--dark-five: #090088;
+	--font-color: #fff;
+	--border-color: #000;
+	--default-transition-speed: 150ms;
+	--confirm-color: #51fc3a;
+	--confirm-hover-color: #4edb3b;
+	--cancel-color: #ff3333;
+	--cancel-hover-color: #df3b3b;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1rem;
-    color: var(--font-color);
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 1rem;
+	color: var(--font-color);
 }
 
 .container {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .container > .top {
-    display: flex;
-    height: 100%;
-    width: 100%;
+	display: flex;
+	height: 100%;
+	width: 100%;
 }
 
 .container > .top aside {
-    width: 25%;
-    transition: all var(--default-transition-speed) ease-in-out;
+	transition: all var(--default-transition-speed) ease-in-out;
 }
 
 .container > .top aside.closed {
-    width: 0%;
-}
-
-.container > .top main {
-    width: 100%;
+	width: 0%;
 }
 
 /* Navigation Bar */
 
 .navbar {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--dark-one);
-    overflow: hidden;
+	width: 25%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--dark-one);
+	overflow: hidden;
 }
 
 .navbar p {
-    text-overflow: ellipsis;
+	text-overflow: ellipsis;
 }
 
 .navbar img {
-    height: 30px;
+	height: 30px;
 }
 
 .navbar .top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px 20px;
 }
 
 .navbar .top .logo {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .navbar .top .logo img {
-    height: 50px;
+	height: 50px;
 }
 
 .sidebar-toggle-button {
-    height: 30px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+	height: 30px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 }
 
 .navbar > * {
-    width: 100%;
+	width: 100%;
 }
 
 .navbar .middle .tasks {
-    padding: 10px;
+	padding: 10px;
 }
 
 .navbar .middle .tasks > div {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all var(--default-transition-speed) ease-in-out;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: all var(--default-transition-speed) ease-in-out;
 }
 
 .navbar .middle .tasks > div:hover {
-    background-color: var(--dark-two);
+	background-color: var(--dark-two);
 }
 
 .navbar .middle .tasks > div .middle {
-    height: 100%;
-    width: 60%;
+	height: 100%;
+	width: 60%;
 }
 
 .navbar .middle .tasks > div img {
-    height: 20px;
+	height: 20px;
 }
 
 .navbar .middle .projects {
-    padding: 10px;
+	padding: 10px;
 }
 
 .navbar .middle .projects > p {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .navbar .middle .projects .project-container {
-    overflow-x: hidden;
-    margin-bottom: 5px;
+	overflow-x: hidden;
+	margin-bottom: 5px;
 }
 
 .navbar .middle .projects .project-container .project {
-    height: 50px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    cursor: pointer;
-    overflow-x: hidden;
-    transition: all var(--default-transition-speed) ease-in-out;
+	height: 50px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all var(--default-transition-speed) ease-in-out;
 }
 
 .navbar .middle .projects .project-container .project:hover {
-    background-color: var(--dark-two);
+	background-color: var(--dark-two);
 }
 
 .navbar .middle .projects img {
-    height: 20px;
+	height: 20px;
 }
 
 .navbar .middle .projects section .project-container .project .middle {
-    width: 60%;
-    text-overflow: ellipsis;
-    direction: ltr;
+	width: 60%;
+	text-overflow: ellipsis;
+	direction: ltr;
 }
 
 .navbar .middle .projects section .project-container .project .middle p {
-    white-space: nowrap;
-    overflow: hidden;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .navbar .middle .projects section > button {
-    cursor: pointer;
-    width: 100%;
-    padding: 15px 10px;
-    margin-bottom: 5px;
-    background-color: var(--dark-three);
-    color: var(--font-color);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    transition: all var(--default-transition-speed) ease-in-out;
+	cursor: pointer;
+	width: 100%;
+	padding: 15px 10px;
+	margin-bottom: 5px;
+	background-color: var(--dark-three);
+	color: var(--font-color);
+	border: 1px solid var(--border-color);
+	border-radius: 10px;
+	transition: all var(--default-transition-speed) ease-in-out;
 }
 
 .navbar .middle .projects section > button:hover {
-    background-color: var(--dark-four);
+	background-color: var(--dark-four);
 }
 
 .navbar .middle .projects .add-project-container {
-    display: none;
-    flex-direction: column;
-    border-radius: 5px;
+	display: none;
+	flex-direction: column;
+	border-radius: 5px;
 }
 
 .navbar .middle .projects .add-project-container .top {
-    padding: 5px;
+	padding: 5px;
 }
 
 .navbar .middle .projects .add-project-container input {
-    width: 100%;
-    padding: 10px 10px;
-    outline: none;
+	width: 100%;
+	padding: 10px 10px;
+	outline: none;
 }
 
 .navbar .middle .projects .add-project-container .bottom {
-    display: flex;
-    gap: 10px;
-    padding: 5px;
-    padding-top: 0px;
+	display: flex;
+	gap: 10px;
+	padding: 5px;
+	padding-top: 0px;
 }
 
 .navbar .middle .projects .add-project-container .bottom > div {
-    width: 100%;
+	width: 100%;
 }
 
 .navbar .middle .projects .add-project-container .bottom button {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all var(--default-transition-speed) ease-in-out;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all var(--default-transition-speed) ease-in-out;
 }
 
 .navbar .middle .projects .add-project-container .bottom .cancel {
-    background-color: var(--cancel-color);
+	background-color: var(--cancel-color);
 }
 
 .navbar .middle .projects .add-project-container .bottom .cancel:hover {
-    background-color: var(--cancel-hover-color);
+	background-color: var(--cancel-hover-color);
 }
 
 .navbar .middle .projects .add-project-container .bottom .add {
-    background-color: var(--confirm-color);
+	background-color: var(--confirm-color);
 }
 
 .navbar .middle .projects .add-project-container .bottom .add:hover {
-    background-color: var(--confirm-hover-color);
+	background-color: var(--confirm-hover-color);
 }
 
 .navbar .count {
-    opacity: 60%;
+	opacity: 60%;
 }
 
 /* Main Content */
 
 .content {
-    background-color: var(--dark-two);
-    display: flex;
-    flex-direction: column;
+	width: 100%;
+	background-color: var(--dark-two);
+	display: flex;
+	flex-direction: column;
 }
 
 .content > .top {
-    position: relative;
-    padding: 5px 20px;
-    height: 60px;
-    width: 100%;
-    display: flex;
-    align-items: center;
+	position: relative;
+	padding: 5px 20px;
+	height: 60px;
+	width: 100%;
+	display: flex;
+	align-items: center;
 }
 
 .content > .top #navbar-toggle-from-main {
-    position: absolute;
-    left: -100%;
-    transition: all var(--default-transition-speed) ease-in-out;
+	position: absolute;
+	left: -100%;
+	transition: all var(--default-transition-speed) ease-in-out;
 }
 
 .content .sidebar-toggle-button img {
-    height: 30px;
+	height: 30px;
 }
 
 /* Footer */
 
 .footer {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--dark-four);
+	grid-column-start: 1;
+	grid-column-end: 3;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--dark-four);
 }
 
 .footer div {
-    flex: 1;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	flex: 1;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .footer button {
-    background-color: transparent;
-    border: none;
-    padding: 2px;
-    cursor: pointer;
+	background-color: transparent;
+	border: none;
+	padding: 2px;
+	cursor: pointer;
 }
 
 .footer img {
-    height: 30px;
+	height: 30px;
 }

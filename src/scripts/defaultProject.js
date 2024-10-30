@@ -4,16 +4,15 @@ import bulletPoint from '../assets/images/bullet-point.png';
 
 const projectContainer = document.querySelector('.project-container');
 
-let id = 1;
-
-export function createNewProject() {
-	const projectName = document.querySelector('#project-name');
-	const newProject = new Project(projectName.value, '');
-	projectName.value = '';
+const defaultProject = (function () {
+	const newProject = new Project(
+		'Demo Project',
+		'This Project is a demo project to get you to understand how to use TooDue. Welcome!'
+	);
 
 	const projectDiv = document.createElement('div');
 	projectDiv.classList.add('project');
-	projectDiv.id = id;
+	projectDiv.id = 0;
 
 	const leftDiv = document.createElement('div');
 	leftDiv.classList.add('left');
@@ -41,6 +40,4 @@ export function createNewProject() {
 	projectContainer.appendChild(projectDiv);
 
 	adjustContainer();
-
-	id++;
-}
+})();

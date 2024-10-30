@@ -71,37 +71,27 @@
     
                         <section>
                             <div class="project-container">
-                                <div class="project">
-                                    <div class="left">
-                                        <img src="assets/images/bullet-point.png" alt="Project Image">
-                                    </div>
-            
-                                    <div class="middle">
-                                        <p class="project-name">Demo Project</p>
-                                    </div>
-            
-                                    <div class="right">
-                                        <p class="count">0</p>
-                                    </div>
-                                </div>
+                                
                             </div>
         
                             <button type="button" class="add-new-project">New Project</button>
         
                             <div class="add-project-container">
-                                <div class="top">
-                                    <input type="text" name="project name" id="project-name" placeholder="Project Name">
-                                </div>
-        
-                                <div class="bottom">
-                                    <div class="left">
-                                        <button type="button" class="cancel" id="cancel-new-project">cancel</button>
+                                <form class="new-project-form">
+                                    <div class="top">
+                                        <input type="text" name="name" id="project-name" placeholder="Project Name" required>
                                     </div>
-        
-                                    <div class="right">
-                                        <button type="button" class="add" id="add-new-project">Add</button>
+            
+                                    <div class="bottom">
+                                        <div class="left">
+                                            <button type="button" class="cancel" id="cancel-new-project">cancel</button>
+                                        </div>
+            
+                                        <div class="right">
+                                            <button type="submit" class="add" id="add-new-project">Add</button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </section>
                     </div>
