@@ -1,5 +1,6 @@
 import { Project } from './project.js';
 import { adjustContainer } from './projectContainerOverflow.js';
+import { projects } from './projects.js';
 import bulletPoint from '../assets/images/bullet-point.png';
 
 const projectContainer = document.querySelector('.project-container');
@@ -9,6 +10,9 @@ const defaultProject = (function () {
 		'Demo Project',
 		'This Project is a demo project to get you to understand how to use TooDue. Welcome!'
 	);
+
+	projects.push(newProject);
+	console.log(projects);
 
 	const projectDiv = document.createElement('div');
 	projectDiv.classList.add('project');

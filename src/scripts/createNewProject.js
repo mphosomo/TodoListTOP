@@ -1,5 +1,6 @@
 import { Project } from './project.js';
 import { adjustContainer } from './projectContainerOverflow.js';
+import { projects } from './projects.js';
 import bulletPoint from '../assets/images/bullet-point.png';
 
 const projectContainer = document.querySelector('.project-container');
@@ -10,6 +11,9 @@ export function createNewProject() {
 	const projectName = document.querySelector('#project-name');
 	const newProject = new Project(projectName.value, '');
 	projectName.value = '';
+
+	projects.push(newProject);
+	console.log(projects);
 
 	const projectDiv = document.createElement('div');
 	projectDiv.classList.add('project');
