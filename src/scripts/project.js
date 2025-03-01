@@ -1,22 +1,22 @@
 export class Project {
-    constructor(name, description) {
-        this.name = name;
-        this.description = description;
-    }
+	constructor(name, description) {
+		this.name = name;
+		this.description = description;
+	}
 
-    getName() {
-        return this.name;
-    }
+	getName() {
+		return this.name;
+	}
 
-    getDescription() {
-        return this.description;
-    }
+	getDescription() {
+		return this.description;
+	}
 
-    setName(newName) {
-        this.name = newName;
-    }
+	setName(newName) {
+		this.name = newName;
+	}
 
-    setDescription(newDescription) {
-        this.description = newDescription
-    }
+	setDescription(newDescription) {
+		this.description = newDescription;
+	}
 }
