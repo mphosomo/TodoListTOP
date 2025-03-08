@@ -1,7 +1,8 @@
 export class Project {
-	constructor(name, description) {
+	constructor(name, description, dateCreated) {
 		this.name = name;
 		this.description = description;
+		this.dateCreated = dateCreated;
 	}
 
 	getName() {
@@ -10,6 +11,10 @@ export class Project {
 
 	getDescription() {
 		return this.description;
+	}
+
+	getDateCreated() {
+		return this.dateCreated;
 	}
 
 	setName(newName) {
