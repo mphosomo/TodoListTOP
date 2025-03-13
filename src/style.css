@@ -1,3 +1,21 @@
+:root {
+	--bg-color: #ffffff;
+	--bg-color-secondary: #fafafa;
+	--bg-color-accent: #e7e7e7;
+	--text-color: #000000;
+	--primary-color: #007bff;
+	--font: sans-serif, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+		'Lucida Sans Unicode', Geneva, Verdana;
+}
+
+.dark-theme {
+	--bg-color: #1e1d1f;
+	--bg-color-secondary: #292929;
+	--bg-color-accent: #383838;
+	--text-color: #ffffff;
+	--primary-color: #8903ff;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -5,8 +23,137 @@
 }
 
 body {
+	color: var(--text-color);
 	font-size: 1rem;
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-family: sans-serif, 'Lucida Sans', 'Lucida Sans Regular',
+		'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 	font-weight: normal;
+}
+
+h1 {
+	font-size: 2rem;
+}
+
+button {
+	cursor: pointer;
+	padding: 5px;
+	color: #fff;
+	font-family: var(--font);
+	border: 1px solid var(--text-color);
+	border-radius: 5px;
+	transition: background-color 100ms ease-in-out;
+}
+
+.breaker {
+	background-color: var(--text-color);
+	opacity: 30%;
+	width: 100%;
+	height: 2px;
+	margin: 10px 0;
+}
+
+.container {
+	height: 100vh;
+	width: 100%;
+	display: grid;
+	grid-template-areas: 'sidebar' 'main';
+	grid-template-columns: 1fr 4fr;
+	grid-template-rows: 1fr;
+	background-color: var(--bg-color);
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	grid-area: sidebar;
+	height: auto;
+	max-width: auto;
+	padding: 10px;
+	margin: 5px;
+	border: none;
+	border-radius: 10px;
+	background-color: var(--bg-color-secondary);
+}
+
+.sidebar .top {
+	padding: 10px;
+}
+
+.sidebar .top .projects {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.sidebar .top .projects .project-container {
+	max-width: auto;
+	padding: 15px 10px;
+	margin-bottom: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5rem;
+	background-color: var(--bg-color-accent);
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.sidebar .top .projects .project-container.active {
+	font-weight: bold;
+}
+
+.sidebar .top .projects .project-container .left p {
+	max-width: 100%;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.sidebar .top .projects .project-container .right {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+}
+
+.sidebar .top .projects .project-container .right #edit-button {
+	background-color: green;
+	transition: all 100ms ease-in-out;
+}
+
+.sidebar .top .projects .project-container .right #edit-button:hover {
+	background-color: lightgreen;
+}
+
+.sidebar .top .projects .project-container .right #delete-button {
+	background-color: red;
+	transition: all 100ms ease-in-out;
+}
+
+.sidebar .top .projects .project-container .right #delete-button:hover {
+	background-color: lightcoral;
+}
+
+.sidebar .bottom {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.sidebar .bottom button {
+	background-color: var(--primary-color);
+	padding: 10px 20px;
+	transition: all 100ms ease-in-out;
+}
+
+.sidebar .bottom button:hover {
+	background-color: lightblue;
+	color: var(--text-color);
+	scale: 1.1;
+}
+
+.task-view {
+	grid-area: main;
 }
