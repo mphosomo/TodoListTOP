@@ -8,6 +8,23 @@
 		'Lucida Sans Unicode', Geneva, Verdana;
 }
 
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+	cursor: pointer;
+}
+
 .dark-theme {
 	--bg-color: #1e1d1f;
 	--bg-color-secondary: #292929;
@@ -74,22 +91,32 @@ button {
 	border: none;
 	border-radius: 10px;
 	background-color: var(--bg-color-secondary);
+	overflow: hidden;
 }
 
 .sidebar .top {
 	padding: 10px;
+	overflow: hidden;
 }
 
 .sidebar .top .projects {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	overflow: auto;
+	scrollbar-width: 5px;
+	max-height: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	max-width: auto;
+	flex: 1;
 }
 
 .sidebar .top .projects .project-container {
 	max-width: auto;
 	padding: 15px 10px;
 	margin-bottom: 10px;
+	margin-right: 5px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -146,6 +173,7 @@ button {
 	background-color: var(--primary-color);
 	padding: 10px 20px;
 	transition: all 100ms ease-in-out;
+	margin-top: 20px;
 }
 
 .sidebar .bottom button:hover {
