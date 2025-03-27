@@ -98,29 +98,26 @@
 							</div>
 						</div>
 
+						<div class="seperator"></div>
+
 						<div class="right">
-							<div class="left">
-								<select name="priority" id="task-priority">
-									<option value="high">High</option>
-									<option value="medium">Medium</option>
-									<option value="low">Low</option>
-								</select>
+							<select name="priority" id="task-priority">
+								<option value="high" id="high-priority">
+									High
+								</option>
+								<option value="medium" id="medium-priority">
+									Medium
+								</option>
+								<option value="low" id="low-priority">
+									Low
+								</option>
+							</select>
 
-								<input
-									type="date"
-									name="due-date"
-									id="due-date"
-								/>
-							</div>
+							<input type="date" name="due-date" id="due-date" />
 
-							<div class="right">
-								<button type="button" id="delete-task">
-									Delete
-								</button>
-								<button type="button" id="expand-task">
-									Expand
-								</button>
-							</div>
+							<button type="button" id="delete-task">
+								Delete
+							</button>
 						</div>
 					</div>
 				</div>
