@@ -315,6 +315,10 @@ button {
 	gap: 10px;
 }
 
-.task-view .tasks .task-container .right button {
+.task-view .tasks .task-container .right #delete-task {
 	background-color: tomato;
+}
+
+.task-view .tasks .task-container .right #edit-task {
+	background-color: greenyellow;
 }
