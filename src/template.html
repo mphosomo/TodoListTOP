@@ -20,10 +20,10 @@
 							</div>
 
 							<div class="right">
-								<button type="button" id="edit-button">
+								<button type="button" id="edit-project">
 									Edit
 								</button>
-								<button type="button" id="delete-button">
+								<button type="button" id="delete-project">
 									Delete
 								</button>
 							</div>
@@ -35,10 +35,10 @@
 							</div>
 
 							<div class="right">
-								<button type="button" id="edit-button">
+								<button type="button" id="edit-project">
 									Edit
 								</button>
-								<button type="button" id="delete-button">
+								<button type="button" id="delete-project">
 									Delete
 								</button>
 							</div>
@@ -51,7 +51,80 @@
 				</div>
 			</aside>
 
-			<main class="task-view"></main>
+			<main class="task-view">
+				<div class="top">
+					<div class="left">
+						<h1 class="project-title">Demo Project</h1>
+						<p class="project-description">
+							Lorem ipsum dolor sit, amet consectetur adipisicing
+							elit. Iure, minus sapiente, nostrum, quos magnam
+							architecto odio fugiat maxime rerum nulla tempore
+							itaque ipsam et doloribus. Nam unde libero fuga
+							officiis?
+						</p>
+					</div>
+
+					<div class="right">
+						<button type="button">New Task</button>
+					</div>
+				</div>
+
+				<div class="tasks">
+					<div class="task-container">
+						<div class="left">
+							<div class="top">
+								<div class="left">
+									<h3>Demo Task</h3>
+								</div>
+
+								<div class="right">
+									<input
+										type="checkbox"
+										name="taskComplete"
+										id="task-complete"
+									/>
+								</div>
+							</div>
+
+							<div class="bottom">
+								<p class="task-description">
+									Lorem ipsum, dolor sit amet consectetur
+									adipisicing elit. Repellendus, numquam
+									corrupti? Dicta velit, rem autem a voluptas
+									non blanditiis et perspiciatis aut accusamus
+									veritatis architecto tempore nobis inventore
+									consequatur magni.
+								</p>
+							</div>
+						</div>
+
+						<div class="right">
+							<div class="left">
+								<select name="priority" id="task-priority">
+									<option value="high">High</option>
+									<option value="medium">Medium</option>
+									<option value="low">Low</option>
+								</select>
+
+								<input
+									type="date"
+									name="due-date"
+									id="due-date"
+								/>
+							</div>
+
+							<div class="right">
+								<button type="button" id="delete-task">
+									Delete
+								</button>
+								<button type="button" id="expand-task">
+									Expand
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
 		</div>
 	</body>
 </html>
