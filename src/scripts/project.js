@@ -38,31 +38,32 @@ export default class Project {
 		newDueDate,
 		newCompleteStatus
 	) {
-		this.tasks.forEach((task) => {
-			if (task.taskId == taskId) {
-				task.name = newName;
-				task.description = newDescription;
-				task.priority = newPriority;
-				task.dueDate = newDueDate;
-				task.isComplete = newCompleteStatus;
+		const task = this.tasks.find((task) => task.taskId === taskId);
 
-				return `Task with ID '${taskId}' edited`;
-			} else {
-				return `Task with ID '${taskId}' does not exist!`;
-			}
-		});
+		if (task) {
+			task.name = newName;
+			task.description = newDescription;
+			task.priority = newPriority;
+			task.dueDate = newDueDate;
+			task.isComplete = newCompleteStatus;
+
+			return `Task with ID '${taskId}' edited!`;
+		} else {
+			return `Task with ID '${taskId}' does not exist!`;
+		}
 	}
 
 	deleteTask(taskId) {
-		this.tasks.forEach((task) => {
-			if (task.taskId == taskId) {
-				const taskIndex = this.tasks.indexOf(task);
-				this.tasks.splice(taskIndex, 1);
-				return `Task with ID '${taskId}' deleted!`;
-			} else {
-				return `Task with ID '${taskId}' does not exist!`;
-			}
-		});
+		const taskIndex = this.tasks.findIndex(
+			(task) => task.taskId === taskId
+		);
+
+		if (taskIndex !== -1) {
+			this.tasks.splice(taskIndex, 1);
+			return `Task with ID '${taskId}' deleted!`;
+		} else {
+			return `Task with ID '${taskId}' does not exist!`;
+		}
 	}
 
 	toString() {
