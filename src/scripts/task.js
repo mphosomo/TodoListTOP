@@ -1,6 +1,6 @@
 export default class Task {
 	constructor(name, description, priority, dueDate, isComplete) {
-		this.taskId = 'task-' + crypto.randomUUID().slice(0, 8);
+		this.taskId = 'task-' + crypto.randomUUID().substring(0, 8);
 		this.name = name;
 		this.description = description;
 		this.priority = priority;
