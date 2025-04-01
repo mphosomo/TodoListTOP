@@ -1,2 +1,14 @@
-- Implement task creation
-- Implement project creation
+- Feature: project creation/editting
+1. Create creation/editting modal
+2. Add functionality to modal
+3. Reflect changes live in application
+
+- Feature: Task creation/editting
+1. Create creation/editting modal
+2. Add functionality to modal
+3. Reflect changes live in application
+
+- Rework UI (Make it look more modern and clean)
+    - Make UI responsive
+    - Add changeable themes
+    - Add animations
