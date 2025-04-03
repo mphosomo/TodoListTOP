@@ -1,5 +1,7 @@
 import Task from './task.js';
 
+import { demoTask } from './task.js';
+
 export default class Project {
 	constructor(name, description) {
 		const randomId = crypto.randomUUID();
@@ -11,7 +13,7 @@ export default class Project {
 		this.tasks = [];
 	}
 
-	get tasks() {
+	getTasks() {
 		this.tasks.forEach((task) => {
 			return task.toString();
 		});
@@ -70,3 +72,16 @@ export default class Project {
 		return `Project ID: ${this.projectId}\nName: ${this.name}\nDescription: ${this.description}`;
 	}
 }
+
+export const demoProject = new Project(
+	'Demo Project',
+	'This is a demo project'
+);
+
+demoProject.createNewTask(
+	demoTask.name,
+	demoTask.description,
+	demoTask.priority,
+	demoTask.dueDate,
+	demoTask.isComplete
+);
