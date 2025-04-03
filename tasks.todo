@@ -1,10 +1,20 @@
-- Feature: project creation/editting
-1. Create creation/editting modal
+- Feature: project creation [in-progress]
+1. Create creation modal
 2. Add functionality to modal
 3. Reflect changes live in application
 
-- Feature: Task creation/editting
-1. Create creation/editting modal
+- Feature: project editting
+1. Create editting modal
+2. Add functionality to modal
+3. Reflect changes live in application
+
+- Feature: task creation
+1. Create creation modal
+2. Add functionality to modal
+3. Reflect changes live in application
+
+- Feature: task editting
+1. Create editting modal
 2. Add functionality to modal
 3. Reflect changes live in application
 

@@ -224,12 +224,23 @@ button {
 	pointer-events: all;
 }
 
+/* Create project modal */
+
 .modal-container .create-project-modal {
+	display: none;
 	background-color: var(--bg-color);
 	padding: 10px;
 	z-index: 10;
 	border: none;
 	border-radius: 10px;
+	pointer-events: none;
+}
+
+.modal-container .create-project-modal.active {
+	display: flex;
+	flex-direction: column;
+	opacity: 100%;
+	pointer-events: all;
 }
 
 .modal-container .create-project-modal .top {
@@ -269,6 +280,70 @@ button {
 }
 
 .modal-container .create-project-modal .bottom .project-details button {
+	padding: 10px;
+	font-weight: bold;
+	color: var(--text-color);
+	background-color: green;
+	transition: color 0.3s ease-in-out;
+}
+
+/* Create task modal */
+
+.modal-container .create-task-modal {
+	display: none;
+	background-color: var(--bg-color);
+	padding: 10px;
+	z-index: 10;
+	border: none;
+	border-radius: 10px;
+	pointer-events: none;
+}
+
+.modal-container .create-task-modal.active {
+	display: flex;
+	flex-direction: column;
+	opacity: 100%;
+	pointer-events: all;
+}
+
+.modal-container .create-task-modal .top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10rem;
+}
+
+.modal-container .create-task-modal .top button {
+	border: none;
+	text-align: center;
+	color: var(--text-color);
+	font-weight: bold;
+	background-color: transparent;
+	font-size: 100%;
+}
+
+.modal-container .create-task-modal .bottom .task-details {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+.modal-container .create-task-modal .bottom .task-details label {
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.modal-container .create-task-modal .bottom .task-details input,
+.modal-container .create-task-modal .bottom .task-details select {
+	outline: none;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.modal-container .create-task-modal .bottom .task-details button {
 	padding: 10px;
 	font-weight: bold;
 	color: var(--text-color);

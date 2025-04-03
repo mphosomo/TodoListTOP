@@ -67,7 +67,9 @@
 					</div>
 
 					<div class="right">
-						<button type="button">New Task</button>
+						<button type="button" id="add-new-task">
+							New Task
+						</button>
 					</div>
 				</div>
 
@@ -141,7 +143,7 @@
 				</a>
 			</footer>
 
-			<div class="modal-container active">
+			<div class="modal-container">
 				<div class="create-project-modal">
 					<div class="top">
 						<div class="left">
@@ -165,7 +167,7 @@
 							<label for="project-name-input">Name:</label>
 							<input
 								type="text"
-								name="project-name-input"
+								name="name"
 								id="project-name-input"
 								maxlength="50"
 								required
@@ -176,12 +178,73 @@
 							>
 							<input
 								type="text"
-								name="project-description-input"
+								name="description"
 								id="project-description-input"
 								required
 							/>
 
 							<button type="submit" id="create-project">
+								Create
+							</button>
+						</form>
+					</div>
+				</div>
+
+				<div class="create-task-modal">
+					<div class="top">
+						<div class="left">
+							<h2>Create Task</h2>
+						</div>
+
+						<div class="right">
+							<button
+								type="button"
+								id="close-task-creation-modal"
+							>
+								&times;
+							</button>
+						</div>
+					</div>
+
+					<div class="breaker"></div>
+
+					<div class="bottom">
+						<form class="task-details">
+							<label for="task-name-input">Name:</label>
+							<input
+								type="text"
+								name="name"
+								id="task-name-input"
+								maxlength="50"
+								required
+							/>
+
+							<label for="task-description-input"
+								>Description:</label
+							>
+							<input
+								type="text"
+								name="description"
+								id="task-description-input"
+								required
+							/>
+
+							<label for="task-priority-input">Priority:</label>
+							<select name="priority" id="task-priority">
+								<option value="high-priority">High</option>
+								<option value="medium-priority">Medium</option>
+								<option value="low-priority">Low</option>
+							</select>
+
+							<label for="task-due-date-input">Due Date:</label>
+							<input
+								type="date"
+								name="due-date"
+								id="task-due-date-input"
+								required
+							/>
+
+							<button type="submit" id="create-task">
 								Create
 							</button>
 						</form>
