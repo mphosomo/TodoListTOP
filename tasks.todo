@@ -1,7 +1,7 @@
-- Feature: project creation [in-progress]
-1. Create creation modal
-2. Add functionality to modal
-3. Reflect changes live in application
+- Feature: project creation [complete]
+1. Create creation modal (complete)
+2. Add functionality to modal (complete)
+3. Reflect changes live in application (complete)
 
 - Feature: project editting
 1. Create editting modal
