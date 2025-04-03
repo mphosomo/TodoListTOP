@@ -203,6 +203,79 @@ button {
 	scale: 1.1;
 }
 
+.modal-container {
+	opacity: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	transition: opacity 0.3s ease;
+}
+
+.modal-container.active {
+	opacity: 100%;
+	pointer-events: all;
+}
+
+.modal-container .create-project-modal {
+	background-color: var(--bg-color);
+	padding: 10px;
+	z-index: 10;
+	border: none;
+	border-radius: 10px;
+}
+
+.modal-container .create-project-modal .top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10rem;
+}
+
+.modal-container .create-project-modal .top button {
+	border: none;
+	text-align: center;
+	color: var(--text-color);
+	font-weight: bold;
+	background-color: transparent;
+	font-size: 100%;
+}
+
+.modal-container .create-project-modal .bottom .project-details {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+.modal-container .create-project-modal .bottom .project-details label {
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.modal-container .create-project-modal .bottom .project-details input {
+	outline: none;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.modal-container .create-project-modal .bottom .project-details button {
+	padding: 10px;
+	font-weight: bold;
+	color: var(--text-color);
+	background-color: green;
+	transition: color 0.3s ease-in-out;
+}
+
 .task-view {
 	grid-area: main;
 	width: 100%;

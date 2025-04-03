@@ -47,7 +47,9 @@
 				</div>
 
 				<div class="bottom">
-					<button type="button">New Project</button>
+					<button type="button" id="add-new-project">
+						New Project
+					</button>
 				</div>
 			</aside>
 
@@ -138,6 +140,54 @@
 					/>
 				</a>
 			</footer>
+
+			<div class="modal-container active">
+				<div class="create-project-modal">
+					<div class="top">
+						<div class="left">
+							<h2>Create Project</h2>
+						</div>
+
+						<div class="right">
+							<button
+								type="button"
+								id="close-project-creation-modal"
+							>
+								&times;
+							</button>
+						</div>
+					</div>
+
+					<div class="breaker"></div>
+
+					<div class="bottom">
+						<form class="project-details">
+							<label for="project-name-input">Name:</label>
+							<input
+								type="text"
+								name="project-name-input"
+								id="project-name-input"
+								maxlength="50"
+								required
+							/>
+
+							<label for="project-description-input"
+								>Description:</label
+							>
+							<input
+								type="text"
+								name="project-description-input"
+								id="project-description-input"
+								required
+							/>
+
+							<button type="submit" id="create-project">
+								Create
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<script src="scripts/index.js" type="module"></script>
