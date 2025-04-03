@@ -1,21 +1,16 @@
 import Project from './project.js';
+import { demoProject } from './project.js';
 
 export default class Controller {
 	constructor() {
-		this.projects = [];
-	}
-
-	get projects() {
-		this.projects.forEach((project) => {
-			return project.toString();
-		});
+		this.projects = [demoProject];
 	}
 
 	createNewProject(name, description) {
 		const newProject = new Project(name, description);
 		this.projects.push(newProject);
 
-		return `Project created with ID ${newProject.projectId}`;
+		return newProject;
 	}
 
 	editProject(projectId, newName, newDescription) {
