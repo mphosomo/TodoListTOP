@@ -12,3 +12,11 @@ export default class Task {
 		return `Task ID: ${this.taskId}\nName: ${this.name}\nDescription: ${this.description}\nPriority: ${this.priority}\nDue Date: ${this.dueDate}\nComplete: ${this.isComplete}`;
 	}
 }
+
+export const demoTask = new Task(
+	'Demo Task',
+	'This is a demo task',
+	'high-priority',
+	'2025-04-02',
+	false
+);
