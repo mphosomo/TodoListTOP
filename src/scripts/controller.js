@@ -1,4 +1,5 @@
 import Project from './project.js';
+import Task from './task.js';
 import { demoProject } from './project.js';
 
 export default class Controller {
@@ -8,35 +9,21 @@ export default class Controller {
 
 	createNewProject(name, description) {
 		const newProject = new Project(name, description);
+		this.setActiveProject(newProject);
 		this.projects.push(newProject);
 
 		return newProject;
 	}
 
-	editProject(projectId, newName, newDescription) {
-		const project = this.projects.find(
+	setActiveProject(projectId) {
+		const activeProject = this.projects.find(
 			(project) => project.projectId === projectId
 		);
 
-		if (project) {
-			project.name = newName;
-			project.description = newDescription;
-			return `Project with ID '${projectId}' edited!`;
-		} else {
-			return `Project with ID '${projectId}' does not exist!`;
-		}
-	}
-
-	deleteProject(projectId) {
-		const projectIndex = this.projects.findIndex(
-			(project) => project.projectId === projectId
-		);
-
-		if (projectIndex !== -1) {
-			this.projects.splice(projectIndex, 1);
-			return `Project with ID '${projectId}' deleted!`;
-		} else {
-			return `Project with ID '${projectId}' does not exist!`;
+		if (activeProject) {
+			console.log(
+				`Project '${activeProject.name}' with ID '${activeProject.projectId}' was set to Active!`
+			);
 		}
 	}
 }
