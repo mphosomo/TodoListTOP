@@ -2,6 +2,7 @@ import '../style.css';
 
 import Controller from './controller';
 import { demoProject } from './project';
+import Task from './task';
 
 const modalContainer = document.querySelector('.modal-container');
 
@@ -14,6 +15,9 @@ const closeProjectCreateModal = document.querySelector(
 	'#close-project-creation-modal'
 );
 const projectForm = document.querySelector('.project-details');
+
+const tasksContainer = document.querySelector('.tasks');
+let tasks = document.querySelectorAll('.task-container');
 
 const newTaskButton = document.querySelector('#add-new-task');
 const taskCreateModal = document.querySelector('.create-task-modal');
@@ -48,6 +52,151 @@ const modalManager = (function () {
 	});
 })();
 
+const taskManager = (function () {
+	// Creating a new Task
+	taskForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+
+		const taskName = document.querySelector('#task-name-input').value;
+		const taskDescription = document.querySelector(
+			'#task-description-input'
+		).value;
+		const taskPriority = document.querySelector(
+			'#task-priority-input'
+		).value;
+		const taskDueDate = document.querySelector(
+			'#task-due-date-input'
+		).value;
+
+		const newTask = new Task(
+			taskName,
+			taskDescription,
+			taskPriority,
+			taskDueDate
+		);
+
+		// display the task after it has been created
+		renderTask(newTask);
+
+		controller.addNewTaskToActiveProject(newTask);
+
+		document.querySelector('#task-name-input').value = '';
+		document.querySelector('#task-description-input').value = '';
+		document.querySelector('#task-due-date-input').value = '';
+
+		modalContainer.classList.remove('active');
+		taskCreateModal.classList.remove('active');
+	});
+
+	function renderTask(task) {
+		const taskContainer = document.createElement('div');
+		taskContainer.classList.add('task-container');
+		taskContainer.id = task.taskId;
+
+		const outsideLeft = document.createElement('div');
+		outsideLeft.classList.add('left');
+
+		const outsideLeftTop = document.createElement('div');
+		outsideLeftTop.classList.add('top');
+
+		const outsideLeftTopLeft = document.createElement('div');
+		outsideLeftTopLeft.classList.add('left');
+		const taskNameElement = document.createElement('h3');
+		taskNameElement.innerText = task.name;
+		outsideLeftTopLeft.appendChild(taskNameElement);
+
+		const outsideLeftTopRight = document.createElement('div');
+		outsideLeftTopRight.classList.add('right');
+
+		const taskCompleteCheckbox = document.createElement('input');
+		taskCompleteCheckbox.type = 'checkbox';
+		taskCompleteCheckbox.name = 'task-complete';
+		taskCompleteCheckbox.id = 'task-complete';
+		taskCompleteCheckbox.classList.add('task-complete');
+		taskCompleteCheckbox.addEventListener('click', (event) => {
+			event.stopPropagation();
+		});
+
+		outsideLeftTopRight.appendChild(taskCompleteCheckbox);
+
+		outsideLeftTop.append(outsideLeftTopLeft, outsideLeftTopRight);
+
+		const outsideLeftBottom = document.createElement('div');
+		outsideLeftBottom.classList.add('bottom');
+
+		const taskDescriptionElement = document.createElement('p');
+		taskDescriptionElement.classList.add('task-description');
+		taskDescriptionElement.innerText = task.description;
+		outsideLeftBottom.appendChild(taskDescriptionElement);
+
+		outsideLeft.append(outsideLeftTop, outsideLeftBottom);
+
+		const seperator = document.createElement('div');
+		seperator.classList.add('seperator');
+
+		const outsideRight = document.createElement('div');
+		outsideRight.classList.add('right');
+
+		const textWrapper = document.createElement('div');
+		textWrapper.classList.add('wrapper');
+
+		const wrapperLeft = document.createElement('div');
+		wrapperLeft.classList.add('left');
+		const taskPriorityLabel = document.createElement('label');
+		taskPriorityLabel.setAttribute('for', 'task-priority');
+		taskPriorityLabel.innerText = 'Priority:';
+		const taskPriority = document.createElement('p');
+		taskPriority.name = 'priority';
+		taskPriority.id = 'task-priority';
+		taskPriority.innerText = task.priority;
+		wrapperLeft.append(taskPriorityLabel, taskPriority);
+
+		const wrapperRight = document.createElement('div');
+		wrapperRight.classList.add('right');
+		const taskDueDateLabel = document.createElement('label');
+		taskDueDateLabel.setAttribute('for', ' due-date');
+		taskDueDateLabel.innerText = 'DueDate:';
+		const taskDueDate = document.createElement('p');
+		taskDueDate.id = 'due-date';
+		taskDueDate.innerText = task.getFormattedDate();
+		wrapperRight.append(taskDueDateLabel, taskDueDate);
+
+		textWrapper.append(wrapperLeft, wrapperRight);
+
+		const buttons = document.createElement('div');
+		buttons.classList.add('action-buttons');
+
+		const editTaskButton = document.createElement('button');
+		editTaskButton.type = 'button';
+		editTaskButton.id = 'edit-task';
+		editTaskButton.innerText = 'Edit';
+
+		const deleteTaskButton = document.createElement('button');
+		deleteTaskButton.type = 'button';
+		deleteTaskButton.id = 'delete-task';
+		deleteTaskButton.innerText = 'Delete';
+
+		buttons.append(editTaskButton, deleteTaskButton);
+
+		outsideRight.append(textWrapper, buttons);
+
+		taskContainer.append(outsideLeft, seperator, outsideRight);
+
+		tasksContainer.appendChild(taskContainer);
+
+		taskContainer.addEventListener('click', () => {
+			console.log(`Task with Id '${task.taskId}' was clicked!`);
+		});
+
+		tasks = document.querySelectorAll('task-container');
+
+		// returing the project container element so we can set it as active
+		return taskContainer;
+	}
+
+	return { renderTask };
+})();
+
 const projectManager = (function () {
 	// Creating a new project
 	projectForm.addEventListener('submit', (e) => {
@@ -65,7 +214,7 @@ const projectManager = (function () {
 
 		// Making the new project active and rendering it
 		// 'renderProject' returns the projects container element, that is why I have it as a callback
-		setProjectActive(newProject, renderProject(newProject));
+		setProjectAsActive(newProject, renderProject(newProject));
 
 		document.querySelector('#project-name-input').value = '';
 		document.querySelector('#project-description-input').value = '';
@@ -97,12 +246,12 @@ const projectManager = (function () {
 
 		projectContainer.append(leftSide, rightSide);
 
+		projectsContainer.appendChild(projectContainer);
+
 		// created project has to be clickable
 		projectContainer.addEventListener('click', () => {
-			setProjectActive(project, projectContainer);
+			setProjectAsActive(project, projectContainer);
 		});
-
-		projectsContainer.appendChild(projectContainer);
 
 		projects = document.querySelectorAll('.project-container');
 
@@ -110,15 +259,16 @@ const projectManager = (function () {
 		return projectContainer;
 	}
 
-	function setProjectActive(project, container) {
+	function setProjectAsActive(project, container) {
 		setAllAsInactive(projects);
 		controller.setActiveProject(project.projectId);
 		container.classList.add('active');
 
-		displayActiveProjectDetails(project.name, project.description);
+		removeTasksFromProjectDisplay();
+		displayActiveProject(project.name, project.description);
 	}
 
-	function displayActiveProjectDetails(projectName, projectDescription) {
+	function displayActiveProject(projectName, projectDescription) {
 		const activeProjectNameDisplay =
 			document.querySelector('.project-title');
 		activeProjectNameDisplay.innerText = projectName;
@@ -127,6 +277,9 @@ const projectManager = (function () {
 			'.project-description'
 		);
 		activeProjectDescriptionDisplay.innerText = projectDescription;
+
+		// display the tasks of the active project
+		renderProjectTasks();
 	}
 
 	function setAllAsInactive(projectElements) {
@@ -135,11 +288,27 @@ const projectManager = (function () {
 		});
 	}
 
+	function removeTasksFromProjectDisplay() {
+		const tasksContainer = document.querySelector('.tasks');
+
+		while (tasksContainer.firstChild) {
+			tasksContainer.firstChild.remove();
+		}
+	}
+
+	function renderProjectTasks() {
+		const activeProject = controller.getActiveProject();
+
+		activeProject.getTasks().forEach((task) => {
+			taskManager.renderTask(task);
+		});
+	}
+
 	function initialRender() {
 		controller.projects.forEach((project) => {
 			// Setting the demo project as active
 			if (project.projectId === demoProject.projectId) {
-				setProjectActive(project, renderProject(project));
+				setProjectAsActive(project, renderProject(project));
 			} else {
 				// For the rest of the projects(When localStorage is introduced), I want the projects to be rendered but not set to active
 				projects = renderProject(project);
@@ -149,22 +318,4 @@ const projectManager = (function () {
 
 	// Rendering any pre-exsisting projects
 	initialRender();
-})();
-
-const taskManager = (function () {
-	// Creating a new Task
-	taskForm.addEventListener('submit', (e) => {
-		e.preventDefault();
-
-		const taskName = document.querySelector('#task-name-input').value;
-		const taskDescription = document.querySelector(
-			'#task-description-input'
-		).value;
-		const taskPriority = document.querySelector(
-			'#task-priority-input'
-		).value;
-		const taskDueDate = document.querySelector(
-			'#task-due-date-input'
-		).value;
-	});
 })();
