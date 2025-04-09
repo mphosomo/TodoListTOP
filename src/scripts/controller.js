@@ -5,6 +5,7 @@ import { demoProject } from './project.js';
 export default class Controller {
 	constructor() {
 		this.projects = [demoProject];
+		this.activeProject = null;
 	}
 
 	createNewProject(name, description) {
@@ -16,13 +17,22 @@ export default class Controller {
 	}
 
 	setActiveProject(projectId) {
-		const activeProject = this.projects.find(
+		this.activeProject = this.projects.find(
 			(project) => project.projectId === projectId
 		);
+	}
 
-		if (activeProject) {
-			console.log(
-				`Project '${activeProject.name}' with ID '${activeProject.projectId}' was set to Active!`
+	getActiveProject() {
+		return this.activeProject;
+	}
+
+	addNewTaskToActiveProject(task) {
+		if (this.activeProject) {
+			this.activeProject.addTask(
+				task.name,
+				task.description,
+				task.priority,
+				task.dueDate
 			);
 		}
 	}
