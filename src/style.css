@@ -84,10 +84,9 @@ button {
 	width: 100%;
 	display: grid;
 	grid-template-areas:
-		'sidebar main'
-		'sidebar footer';
+		'sidebar content'
+		'sidebar content';
 	grid-template-columns: 1fr 4fr;
-	grid-template-rows: 10fr 1fr;
 	background-color: var(--bg-color);
 }
 
@@ -351,10 +350,19 @@ button {
 	transition: color 0.3s ease-in-out;
 }
 
+.content {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow-x: hidden;
+}
+
 .task-view {
-	grid-area: main;
+	display: flex;
+	flex-direction: column;
 	width: 100%;
-	height: 100%;
+	max-height: 100%;
 	padding: 10px;
 	overflow: hidden;
 }
@@ -364,7 +372,7 @@ button {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: end;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .task-view > .top .left {
@@ -384,16 +392,14 @@ button {
 }
 
 .task-view .tasks {
-	overflow-y: scroll;
 	overflow-x: hidden;
-	overflow: auto;
+	overflow-y: scroll;
 	scrollbar-width: 5px;
-	max-height: 100%;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	gap: 10px;
-	max-width: auto;
+	height: 100%;
+	width: 100%;
 }
 
 .task-view .tasks .task-container {
@@ -409,6 +415,11 @@ button {
 	background-color: var(--bg-color-accent);
 	border-radius: 10px;
 	cursor: pointer;
+	pointer-events: all;
+}
+
+.task-view .tasks .task-container .seperator {
+	margin: 0 3rem;
 }
 
 .task-view .tasks .task-container:hover {
@@ -419,6 +430,10 @@ button {
 .task-view .tasks .task-container:has(select:hover),
 .task-view .tasks .task-container:has(button:hover) {
 	background-color: var(--bg-color-accent);
+}
+
+.task-view .tasks .task-container .left {
+	width: 100%;
 }
 
 .task-view .tasks .task-container .left .top {
@@ -460,23 +475,42 @@ button {
 	height: 20px;
 	cursor: pointer;
 }
-.task-view .tasks .task-container .right {
+.task-view .tasks .task-container > .right {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	gap: 10px;
+	text-align: center;
+	width: 100%;
 }
 
-.task-view .tasks .task-container .right #delete-task {
+.task-view .tasks .task-container > .right .wrapper {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.task-view .tasks .task-container > .right .wrapper label {
+	font-weight: bold;
+}
+
+.task-view .tasks .task-container > .right .action-buttons {
+	display: flex;
+	gap: 1rem;
+}
+
+.task-view .tasks .task-container > .right .action-buttons #delete-task {
 	background-color: tomato;
 }
 
-.task-view .tasks .task-container .right #edit-task {
+.task-view .tasks .task-container > .right .action-buttons #edit-task {
 	background-color: greenyellow;
 }
 
 .footer {
-	grid-area: footer;
-	height: 100%;
+	height: auto;
+	padding: 10px 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
