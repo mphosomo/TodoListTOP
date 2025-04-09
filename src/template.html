@@ -23,95 +23,44 @@
 				</div>
 			</aside>
 
-			<main class="task-view">
-				<div class="top">
-					<div class="left">
-						<h1 class="project-title">Demo Project</h1>
-						<p class="project-description">
-							Lorem ipsum dolor sit, amet consectetur adipisicing
-							elit. Iure, minus sapiente, nostrum, quos magnam
-							architecto odio fugiat maxime rerum nulla tempore
-							itaque ipsam et doloribus. Nam unde libero fuga
-							officiis?
-						</p>
-					</div>
-
-					<div class="right">
-						<button type="button" id="add-new-task">
-							New Task
-						</button>
-					</div>
-				</div>
-
-				<div class="tasks">
-					<div class="task-container">
+			<div class="content">
+				<main class="task-view">
+					<div class="top">
 						<div class="left">
-							<div class="top">
-								<div class="left">
-									<h3>Demo Task</h3>
-								</div>
-
-								<div class="right">
-									<input
-										type="checkbox"
-										name="taskComplete"
-										id="task-complete"
-									/>
-								</div>
-							</div>
-
-							<div class="bottom">
-								<p class="task-description">
-									Lorem ipsum, dolor sit amet consectetur
-									adipisicing elit. Repellendus, numquam
-									corrupti? Dicta velit, rem autem a voluptas
-									non blanditiis et perspiciatis aut accusamus
-									veritatis architecto tempore nobis inventore
-									consequatur magni.
-								</p>
-							</div>
+							<h1 class="project-title">Demo Project</h1>
+							<p class="project-description">
+								Lorem ipsum dolor sit, amet consectetur
+								adipisicing elit. Iure, minus sapiente, nostrum,
+								quos magnam architecto odio fugiat maxime rerum
+								nulla tempore itaque ipsam et doloribus. Nam
+								unde libero fuga officiis?
+							</p>
 						</div>
 
-						<div class="seperator"></div>
-
 						<div class="right">
-							<select name="priority" id="task-priority">
-								<option value="high" id="high-priority">
-									High
-								</option>
-								<option value="medium" id="medium-priority">
-									Medium
-								</option>
-								<option value="low" id="low-priority">
-									Low
-								</option>
-							</select>
-
-							<input type="date" name="due-date" id="due-date" />
-
-							<button type="button" id="edit-task">Edit</button>
-
-							<button type="button" id="delete-task">
-								Delete
+							<button type="button" id="add-new-task">
+								New Task
 							</button>
 						</div>
 					</div>
-				</div>
-			</main>
 
-			<footer class="footer">
-				Copyright &copy; 2025
-				<a
-					href="https://github.com/programmingwithfantom"
-					target="_blank"
-				>
-					<img
-						height="30"
-						src="./components/imgs/github.png"
-						alt="Github Image"
-					/>
-				</a>
-			</footer>
+					<div class="tasks"></div>
+				</main>
+
+				<footer class="footer">
+					Copyright &copy; 2025
+					<a
+						href="https://github.com/programmingwithfantom"
+						target="_blank"
+					>
+						<img
+							height="30"
+							src="./components/imgs/github.png"
+							alt="Github Image"
+						/>
+					</a>
+				</footer>
+			</div>
 
 			<div class="modal-container">
 				<div class="create-project-modal">
@@ -204,10 +153,10 @@
 							/>
 
 							<label for="task-priority-input">Priority:</label>
-							<select name="priority" id="task-priority">
-								<option value="high-priority">High</option>
-								<option value="medium-priority">Medium</option>
-								<option value="low-priority">Low</option>
+							<select name="priority" id="task-priority-input">
+								<option value="High">High</option>
+								<option value="Medium">Medium</option>
+								<option value="Low">Low</option>
 							</select>
 
 							<label for="task-due-date-input">Due Date:</label>
