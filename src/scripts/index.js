@@ -1,3 +1,6 @@
+// TODO: Add active state to tasks
+// TODO: Implement task and project editing and deletion feature
+
 import '../style.css';
 
 import Controller from './controller';
@@ -75,10 +78,10 @@ const taskManager = (function () {
 			taskDueDate
 		);
 
-		// display the task after it has been created
-		renderTask(newTask);
-
 		controller.addNewTaskToActiveProject(newTask);
+
+		// display the task as active after it has been created
+		setTaskAsActive(newTask, renderTask(newTask));
 
 		document.querySelector('#task-name-input').value = '';
 		document.querySelector('#task-description-input').value = '';
@@ -185,13 +188,25 @@ const taskManager = (function () {
 		tasksContainer.appendChild(taskContainer);
 
 		taskContainer.addEventListener('click', () => {
-			console.log(`Task with Id '${task.taskId}' was clicked!`);
+			setTaskAsActive(task, taskContainer);
 		});
 
-		tasks = document.querySelectorAll('task-container');
+		tasks = document.querySelectorAll('.task-container');
 
 		// returing the project container element so we can set it as active
 		return taskContainer;
+	}
+
+	function setTaskAsActive(task, container) {
+		setAllAsInactive(tasks);
+		controller.setActiveTask(task);
+		container.classList.add('active');
+	}
+
+	function setAllAsInactive(taskElements) {
+		taskElements.forEach((taskElement) => {
+			taskElement.classList.remove('active');
+		});
 	}
 
 	return { renderTask };
