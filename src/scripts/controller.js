@@ -1,5 +1,4 @@
 import Project from './project.js';
-import Task from './task.js';
 import { demoProject } from './project.js';
 
 export default class Controller {
