@@ -1,4 +1,7 @@
-// TODO: Implement task and project editing and deletion feature
+// TODO: implement project editing
+// TODO: implement task editing
+// TODO: implement project deletion
+// TODO: Implement task deletion
 
 import '../style.css';
 
