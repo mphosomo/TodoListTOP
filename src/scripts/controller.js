@@ -36,4 +36,10 @@ export default class Controller {
 			);
 		}
 	}
+
+	setActiveTask(taskId) {
+		this.activeTask = this.activeProject
+			.getTasks()
+			.find((task) => task.taskId === taskId);
+	}
 }
