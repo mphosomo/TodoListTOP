@@ -1,4 +1,3 @@
-// TODO: Add active state to tasks
 // TODO: Implement task and project editing and deletion feature
 
 import '../style.css';
