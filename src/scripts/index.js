@@ -262,6 +262,11 @@ const projectManager = (function () {
 		const deleteButton = document.createElement('button');
 		deleteButton.id = 'delete-project';
 		deleteButton.innerText = 'Delete';
+		deleteButton.addEventListener('click', () => {
+			controller.deleteProject(project.projectId);
+			projectsContainer.removeChild(projectContainer);
+		});
+
 		rightSide.append(editButton, deleteButton);
 
 		projectContainer.append(leftSide, rightSide);
@@ -319,9 +324,12 @@ const projectManager = (function () {
 	function renderProjectTasks() {
 		const activeProject = controller.getActiveProject();
 
-		activeProject.getTasks().forEach((task) => {
-			taskManager.renderTask(task);
-		});
+		// We should only render the tasks inside an active project if there is an active project
+		if (activeProject) {
+			activeProject.getTasks().forEach((task) => {
+				taskManager.renderTask(task);
+			});
+		}
 	}
 
 	function initialRender() {

@@ -25,6 +25,15 @@ export default class Controller {
 		return this.activeProject;
 	}
 
+	deleteProject(projectId) {
+		const indexOfProjectToDelete = this.projects.indexOf(
+			(project) => project.projectId === projectId
+		);
+		this.projects.splice(indexOfProjectToDelete, 1);
+
+		return this.projects.length;
+	}
+
 	addNewTaskToActiveProject(task) {
 		if (this.activeProject) {
 			this.activeProject.addTask(
