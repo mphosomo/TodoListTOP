@@ -1,7 +1,6 @@
 // TODO: implement project editing
 // TODO: implement task editing
 // TODO: implement project deletion
-// TODO: Implement task deletion
 
 import '../style.css';
 
@@ -180,6 +179,10 @@ const taskManager = (function () {
 		deleteTaskButton.type = 'button';
 		deleteTaskButton.id = 'delete-task';
 		deleteTaskButton.innerText = 'Delete';
+		deleteTaskButton.addEventListener('click', () => {
+			controller.removeTaskFromActiveProject(task);
+			tasksContainer.removeChild(taskContainer);
+		});
 
 		buttons.append(editTaskButton, deleteTaskButton);
 

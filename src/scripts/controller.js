@@ -41,4 +41,10 @@ export default class Controller {
 			.getTasks()
 			.find((task) => task.taskId === taskId);
 	}
+
+	removeTaskFromActiveProject(task) {
+		if (this.activeProject) {
+			this.activeProject.removeTask(task.taskId);
+		}
+	}
 }
