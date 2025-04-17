@@ -26,12 +26,11 @@ export default class Controller {
 	}
 
 	deleteProject(projectId) {
-		const indexOfProjectToDelete = this.projects.indexOf(
+		const projectToDelete = this.projects.find(
 			(project) => project.projectId === projectId
 		);
-		this.projects.splice(indexOfProjectToDelete, 1);
 
-		return this.projects.length;
+		this.projects.splice(projectToDelete);
 	}
 
 	addNewTaskToActiveProject(task) {
@@ -51,9 +50,9 @@ export default class Controller {
 			.find((task) => task.taskId === taskId);
 	}
 
-	removeTaskFromActiveProject(task) {
-		if (this.activeProject) {
-			this.activeProject.removeTask(task.taskId);
+	removeTaskFromProject(task, project) {
+		if (project) {
+			project.removeTask(task.taskId);
 		}
 	}
 }

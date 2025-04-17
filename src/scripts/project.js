@@ -19,10 +19,9 @@ export default class Project {
 	}
 
 	removeTask(taskId) {
-		const indexOfTask = this.tasks.indexOf(
-			(task) => task.taskId === taskId
-		);
-		this.tasks.splice(indexOfTask, 1);
+		const taskToDelete = this.tasks.find((task) => task.taskId == taskId);
+
+		this.tasks.splice(taskToDelete, 1);
 	}
 
 	getTasks() {

@@ -1,6 +1,7 @@
 // TODO: implement project editing
 // TODO: implement task editing
 // TODO: implement project deletion
+// TODO: When a project is deleted, automatically set the active project to the next project in the projects array
 
 import '../style.css';
 
@@ -87,6 +88,7 @@ const taskManager = (function () {
 		document.querySelector('#task-name-input').value = '';
 		document.querySelector('#task-description-input').value = '';
 		document.querySelector('#task-due-date-input').value = '';
+		document.querySelector('#task-priority-input').value = 'High';
 
 		modalContainer.classList.remove('active');
 		taskCreateModal.classList.remove('active');
@@ -96,6 +98,9 @@ const taskManager = (function () {
 		const taskContainer = document.createElement('div');
 		taskContainer.classList.add('task-container');
 		taskContainer.id = task.taskId;
+		taskContainer.addEventListener('click', () => {
+			setTaskAsActive(task, taskContainer);
+		});
 
 		const outsideLeft = document.createElement('div');
 		outsideLeft.classList.add('left');
@@ -180,7 +185,7 @@ const taskManager = (function () {
 		deleteTaskButton.id = 'delete-task';
 		deleteTaskButton.innerText = 'Delete';
 		deleteTaskButton.addEventListener('click', () => {
-			controller.removeTaskFromActiveProject(task);
+			controller.removeTaskFromProject(task, controller.activeProject);
 			tasksContainer.removeChild(taskContainer);
 		});
 
@@ -191,10 +196,6 @@ const taskManager = (function () {
 		taskContainer.append(outsideLeft, seperator, outsideRight);
 
 		tasksContainer.appendChild(taskContainer);
-
-		taskContainer.addEventListener('click', () => {
-			setTaskAsActive(task, taskContainer);
-		});
 
 		tasks = document.querySelectorAll('.task-container');
 
@@ -247,6 +248,10 @@ const projectManager = (function () {
 		const projectContainer = document.createElement('div');
 		projectContainer.classList.add('project-container');
 		projectContainer.id = project.projectId;
+		// created project has to be clickable
+		projectContainer.addEventListener('click', () => {
+			setProjectAsActive(project, projectContainer);
+		});
 
 		const leftSide = document.createElement('div');
 		leftSide.classList.add('left');
@@ -263,8 +268,16 @@ const projectManager = (function () {
 		deleteButton.id = 'delete-project';
 		deleteButton.innerText = 'Delete';
 		deleteButton.addEventListener('click', () => {
-			controller.deleteProject(project.projectId);
-			projectsContainer.removeChild(projectContainer);
+			if (controller.projects.length > 1) {
+				controller.projects.find(
+					(projectWithId) =>
+						projectWithId.projectId === project.projectId
+				);
+
+				projectsContainer.removeChild(projectContainer);
+			} else {
+				alert('There must be at least one project');
+			}
 		});
 
 		rightSide.append(editButton, deleteButton);
@@ -273,11 +286,6 @@ const projectManager = (function () {
 
 		projectsContainer.appendChild(projectContainer);
 
-		// created project has to be clickable
-		projectContainer.addEventListener('click', () => {
-			setProjectAsActive(project, projectContainer);
-		});
-
 		projects = document.querySelectorAll('.project-container');
 
 		// returning the project container element so we can set it as active
@@ -285,12 +293,18 @@ const projectManager = (function () {
 	}
 
 	function setProjectAsActive(project, container) {
+		console.log(project.tasks);
 		setAllAsInactive(projects);
 		controller.setActiveProject(project.projectId);
 		container.classList.add('active');
 
 		removeTasksFromProjectDisplay();
 		displayActiveProject(project.name, project.description);
+
+		// display the tasks of the active project
+		if (project.getTasks().length != 0) {
+			renderProjectTasks(project);
+		}
 	}
 
 	function displayActiveProject(projectName, projectDescription) {
@@ -302,9 +316,6 @@ const projectManager = (function () {
 			'.project-description'
 		);
 		activeProjectDescriptionDisplay.innerText = projectDescription;
-
-		// display the tasks of the active project
-		renderProjectTasks();
 	}
 
 	function setAllAsInactive(projectElements) {
@@ -321,12 +332,9 @@ const projectManager = (function () {
 		}
 	}
 
-	function renderProjectTasks() {
-		const activeProject = controller.getActiveProject();
-
-		// We should only render the tasks inside an active project if there is an active project
-		if (activeProject) {
-			activeProject.getTasks().forEach((task) => {
+	function renderProjectTasks(project) {
+		if (project) {
+			project.getTasks().forEach((task) => {
 				taskManager.renderTask(task);
 			});
 		}
