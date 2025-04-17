@@ -11,6 +11,7 @@ export default class Controller {
 		const newProject = new Project(name, description);
 		this.setActiveProject(newProject);
 		this.projects.push(newProject);
+		console.log(this.projects);
 
 		return newProject;
 	}
@@ -25,12 +26,13 @@ export default class Controller {
 		return this.activeProject;
 	}
 
-	deleteProject(projectId) {
-		const projectToDelete = this.projects.find(
-			(project) => project.projectId === projectId
-		);
+	deleteProject(project) {
+		const indexOfProjectToDelete = this.projects.indexOf(project);
 
-		this.projects.splice(projectToDelete);
+		this.projects.splice(indexOfProjectToDelete, 1);
+
+		// The element at the index of the project we just deleted will contain a different project now, we will set this project to active after deleting
+		return indexOfProjectToDelete;
 	}
 
 	addNewTaskToActiveProject(task) {

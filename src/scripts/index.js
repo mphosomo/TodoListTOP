@@ -266,12 +266,12 @@ const projectManager = (function () {
 		const deleteButton = document.createElement('button');
 		deleteButton.id = 'delete-project';
 		deleteButton.innerText = 'Delete';
-		deleteButton.addEventListener('click', () => {
+		deleteButton.addEventListener('click', (event) => {
+			event.stopPropagation();
+
+			// Only allow project deleting if there is at least 1 project
 			if (controller.projects.length > 1) {
-				controller.projects.find(
-					(projectWithId) =>
-						projectWithId.projectId === project.projectId
-				);
+				setNextProjectAsActive(controller.deleteProject(project));
 
 				projectsContainer.removeChild(projectContainer);
 			} else {
@@ -291,8 +291,22 @@ const projectManager = (function () {
 		return projectContainer;
 	}
 
+	function setNextProjectAsActive(projectIndex) {
+		let nextProject = controller.projects[0];
+
+		// we need to do this because if the number of projects in the array is 1, then we can only use the only project in the array as the next project
+		if (controller.projects.length > 1) {
+			nextProject = controller.projects[projectIndex];
+		}
+
+		const nextProjectContainer = document.querySelector(
+			`#${nextProject.projectId}`
+		);
+
+		setProjectAsActive(nextProject, nextProjectContainer);
+	}
+
 	function setProjectAsActive(project, container) {
-		console.log(project.tasks);
 		setAllAsInactive(projects);
 		controller.setActiveProject(project.projectId);
 		container.classList.add('active');
