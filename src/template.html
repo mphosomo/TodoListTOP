@@ -218,6 +218,73 @@
 						</form>
 					</div>
 				</div>
+
+				<div class="edit-task-modal">
+					<div class="top">
+						<div class="left">
+							<h2>Edit Task</h2>
+						</div>
+
+						<div class="right">
+							<button
+								type="button"
+								id="close-task-editting-modal"
+							>
+								&times;
+							</button>
+						</div>
+					</div>
+
+					<div class="breaker"></div>
+
+					<div class="bottom">
+						<form class="edit-task-details">
+							<label for="edit-task-name-input">Name:</label>
+							<input
+								type="text"
+								name="name"
+								id="edit-task-name-input"
+								maxlength="50"
+								autocomplete="off"
+								required
+							/>
+
+							<label for="edit-task-description-input"
+								>Description:</label
+							>
+							<input
+								type="text"
+								name="description"
+								id="edit-task-description-input"
+								autocomplete="off"
+							/>
+
+							<label for="edit-task-priority-input"
+								>Priority:</label
+							>
+							<select
+								name="priority"
+								id="edit-task-priority-input"
+							>
+								<option value="High">High</option>
+								<option value="Medium">Medium</option>
+								<option value="Low">Low</option>
+							</select>
+
+							<label for="edit-task-due-date-input"
+								>Due Date:</label
+							>
+							<input
+								type="date"
+								name="due-date"
+								id="edit-task-due-date-input"
+								required
+							/>
+
+							<button type="submit" id="edit-task">Edit</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 

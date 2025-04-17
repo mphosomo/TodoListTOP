@@ -413,6 +413,70 @@ button {
 	transition: color 0.3s ease-in-out;
 }
 
+/* Edit task modal */
+
+.modal-container .edit-task-modal {
+	display: none;
+	background-color: var(--bg-color);
+	padding: 10px;
+	z-index: 10;
+	border: none;
+	border-radius: 10px;
+	pointer-events: none;
+}
+
+.modal-container .edit-task-modal.active {
+	display: flex;
+	flex-direction: column;
+	opacity: 100%;
+	pointer-events: all;
+}
+
+.modal-container .edit-task-modal .top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10rem;
+}
+
+.modal-container .edit-task-modal .top button {
+	border: none;
+	text-align: center;
+	color: var(--text-color);
+	font-weight: bold;
+	background-color: transparent;
+	font-size: 100%;
+}
+
+.modal-container .edit-task-modal .bottom .edit-task-details {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+.modal-container .edit-task-modal .bottom .edit-task-details label {
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.modal-container .edit-task-modal .bottom .edit-task-details input,
+.modal-container .edit-task-modal .bottom .edit-task-details select {
+	outline: none;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.modal-container .edit-task-modal .bottom .edit-task-details button {
+	padding: 10px;
+	font-weight: bold;
+	color: var(--text-color);
+	background-color: green;
+	transition: color 0.3s ease-in-out;
+}
+
 .content {
 	height: 100vh;
 	display: flex;

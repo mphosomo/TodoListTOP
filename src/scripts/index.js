@@ -36,9 +36,14 @@ const closeTaskCreateModal = document.querySelector(
 );
 const taskForm = document.querySelector('.task-details');
 
+const taskEditModal = document.querySelector('.edit-task-modal');
+const closeTaskEditModal = document.querySelector('#close-task-editting-modal');
+
+const editTaskForm = document.querySelector('.edit-task-details');
+
 const controller = new Controller();
 
-const creationModalManager = (function () {
+const ModalManager = (function () {
 	// New Project Modal
 	newProjectButton.addEventListener('click', () => {
 		modalContainer.classList.add('active');
@@ -66,9 +71,17 @@ const creationModalManager = (function () {
 		modalContainer.classList.remove('active');
 		projectEditModal.classList.remove('active');
 	});
+
+	// Edit Task Modal
+	closeTaskEditModal.addEventListener('click', () => {
+		modalContainer.classList.remove('active');
+		taskEditModal.classList.remove('active');
+	});
 })();
 
 const taskManager = (function () {
+	let taskBeingEditted;
+
 	// Creating a new Task
 	taskForm.addEventListener('submit', (e) => {
 		e.preventDefault();
@@ -98,11 +111,47 @@ const taskManager = (function () {
 
 		document.querySelector('#task-name-input').value = '';
 		document.querySelector('#task-description-input').value = '';
-		document.querySelector('#task-due-date-input').value = '';
 		document.querySelector('#task-priority-input').value = 'High';
+		document.querySelector('#task-due-date-input').value = '';
 
 		modalContainer.classList.remove('active');
 		taskCreateModal.classList.remove('active');
+	});
+
+	editTaskForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+
+		const newTaskName = document.querySelector(
+			'#edit-task-name-input'
+		).value;
+		const newTaskDescription = document.querySelector(
+			'#edit-task-description-input'
+		).value;
+		const newTaskPriority = document.querySelector(
+			'#edit-task-priority-input'
+		).value;
+		const newTaskDueDate = document.querySelector(
+			'#edit-task-due-date-input'
+		).value;
+
+		controller.editTaskDetails(
+			taskBeingEditted.taskId,
+			newTaskName,
+			newTaskDescription,
+			newTaskPriority,
+			newTaskDueDate
+		);
+
+		modalContainer.classList.remove('active');
+		taskEditModal.classList.remove('active');
+
+		displayEdittedChanges(
+			taskBeingEditted,
+			newTaskName,
+			newTaskDescription,
+			newTaskPriority,
+			newTaskDueDate
+		);
 	});
 
 	function renderTask(task) {
@@ -190,6 +239,23 @@ const taskManager = (function () {
 		editTaskButton.type = 'button';
 		editTaskButton.id = 'edit-task';
 		editTaskButton.innerText = 'Edit';
+		editTaskButton.addEventListener('click', (event) => {
+			event.stopPropagation();
+
+			// For tracking reasons
+			taskBeingEditted = task;
+
+			document.querySelector('#edit-task-name-input').value = task.name;
+			document.querySelector('#edit-task-description-input').value =
+				task.description;
+			document.querySelector('#edit-task-priority-input').value =
+				task.priority;
+			document.querySelector('#edit-task-due-date-input').value =
+				task.dueDate;
+
+			modalContainer.classList.add('active');
+			taskEditModal.classList.add('active');
+		});
 
 		const deleteTaskButton = document.createElement('button');
 		deleteTaskButton.type = 'button';
@@ -224,6 +290,23 @@ const taskManager = (function () {
 		taskElements.forEach((taskElement) => {
 			taskElement.classList.remove('active');
 		});
+	}
+
+	function displayEdittedChanges(task, name, description, priority, dueDate) {
+		let NodeToEdit;
+
+		// I want to only change the details of what has been editted instead of rerendering the whole projects tab
+		tasks.forEach((taskElement) => {
+			if (taskElement.id == task.taskId) {
+				NodeToEdit = taskElement;
+			}
+		});
+
+		NodeToEdit.querySelector('h3').innerText = name;
+		NodeToEdit.querySelector('.task-description').innerText = description;
+		NodeToEdit.querySelector('#task-priority').innerText = priority;
+		NodeToEdit.querySelector('#due-date').innerText =
+			task.getFormattedDate();
 	}
 
 	return { renderTask };

@@ -11,7 +11,6 @@ export default class Controller {
 		const newProject = new Project(name, description);
 		this.setActiveProject(newProject);
 		this.projects.push(newProject);
-		console.log(this.projects);
 
 		return newProject;
 	}
@@ -23,8 +22,6 @@ export default class Controller {
 
 		projectToEdit.name = name;
 		projectToEdit.description = description;
-
-		console.log(this.projects);
 	}
 
 	setActiveProject(projectId) {
@@ -55,6 +52,17 @@ export default class Controller {
 				task.dueDate
 			);
 		}
+	}
+
+	editTaskDetails(taskId, name, description, priority, dueDate) {
+		const taskToEdit = this.activeProject
+			.getTasks()
+			.find((task) => task.taskId === taskId);
+
+		taskToEdit.name = name;
+		taskToEdit.description = description;
+		taskToEdit.dueDate = dueDate;
+		taskToEdit.priority = priority;
 	}
 
 	setActiveTask(taskId) {
