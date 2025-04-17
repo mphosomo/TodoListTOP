@@ -2,22 +2,19 @@
 	--bg-color: #ffffff;
 	--bg-color-secondary: #fafafa;
 	--bg-color-accent: #e7e7e7;
-	--bg-color-hover: #cecccc;
-	--bg-color-active: #b6b6b6;
 	--text-color: #000000;
-	--primary-color: #007bff;
+
 	--font: sans-serif, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
 		'Lucida Sans Unicode', Geneva, Verdana;
+
+	--sidebar-width: 300px;
 }
 
 .dark-theme {
 	--bg-color: #1e1d1f;
 	--bg-color-secondary: #292929;
 	--bg-color-accent: #383838;
-	--bg-color-hover: #444444;
-	--bg-color-active: #555555;
 	--text-color: #ffffff;
-	--primary-color: #8903ff;
 }
 
 ::-webkit-scrollbar {
@@ -58,7 +55,7 @@ h1 {
 button {
 	cursor: pointer;
 	padding: 5px;
-	color: #fff;
+	color: var(--text-color);
 	font-family: var(--font);
 	border: 1px solid var(--text-color);
 	border-radius: 5px;
@@ -96,8 +93,8 @@ button {
 	justify-content: space-between;
 	grid-area: sidebar;
 	height: auto;
-	max-width: auto;
-	padding: 10px;
+	width: var(--sidebar-width);
+	padding: 5px;
 	margin: 5px;
 	border: none;
 	border-radius: 10px;
@@ -118,7 +115,7 @@ button {
 	max-height: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 5px;
 	max-width: auto;
 	flex: 1;
 }
@@ -133,13 +130,9 @@ button {
 	justify-content: space-between;
 	align-items: center;
 	gap: 0.5rem;
-	background-color: var(--bg-color-accent);
+	background-color: var(--bg-color-secondary);
 	border-radius: 10px;
 	cursor: pointer;
-}
-
-.sidebar .top .projects .project-container:hover {
-	background-color: var(--bg-color-hover);
 }
 
 .sidebar .top .projects .project-container:has(button:hover) {
@@ -148,7 +141,15 @@ button {
 
 .sidebar .top .projects .project-container.active {
 	font-weight: bold;
-	background-color: var(--bg-color-active);
+	background-color: var(--bg-color-accent);
+}
+
+.sidebar .top .projects .project-container .project-icon {
+	height: 20px;
+}
+
+.sidebar .top .projects .project-container .left {
+	width: 100%;
 }
 
 .sidebar .top .projects .project-container .left p {
@@ -165,22 +166,30 @@ button {
 	gap: 5px;
 }
 
+.sidebar .top .projects .project-container .right #edit-project,
+.sidebar .top .projects .project-container .right #delete-project {
+	background-color: transparent;
+	border: none;
+}
+
+.sidebar .top .projects .project-container .right img {
+	height: 20px;
+}
+
 .sidebar .top .projects .project-container .right #edit-project {
-	background-color: green;
 	transition: all 100ms ease-in-out;
 }
 
 .sidebar .top .projects .project-container .right #edit-project:hover {
-	background-color: lightgreen;
+	background-color: var(--bg-color-secondary);
 }
 
 .sidebar .top .projects .project-container .right #delete-project {
-	background-color: red;
 	transition: all 100ms ease-in-out;
 }
 
 .sidebar .top .projects .project-container .right #delete-project:hover {
-	background-color: lightcoral;
+	background-color: var(--bg-color-secondary);
 }
 
 .sidebar .bottom {
@@ -190,14 +199,14 @@ button {
 }
 
 .sidebar .bottom button {
-	background-color: var(--primary-color);
+	background-color: var(--bg-color);
 	padding: 10px 20px;
 	transition: all 100ms ease-in-out;
 	margin-top: 20px;
 }
 
 .sidebar .bottom button:hover {
-	background-color: lightblue;
+	background-color: var(--bg-color-accent);
 	color: var(--text-color);
 	scale: 1.1;
 }
@@ -539,7 +548,7 @@ button {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	background-color: var(--bg-color-accent);
+	background-color: var(--bg-color-secondary);
 	border-radius: 10px;
 	cursor: pointer;
 	pointer-events: all;
@@ -549,8 +558,12 @@ button {
 	margin: 0 3rem;
 }
 
+.task-view .tasks .task-container img {
+	height: 20px;
+}
+
 .task-view .tasks .task-container:hover {
-	background-color: var(--bg-color-hover);
+	background-color: var(--bg-color-accent);
 }
 
 .task-view .tasks .task-container:has(input:hover),
@@ -575,7 +588,7 @@ button {
 }
 
 .task-view .tasks .task-container.active {
-	background-color: var(--bg-color-active);
+	background-color: var(--bg-color-accent);
 }
 
 .task-view .tasks .task-container.active .left .top .left h3 {
@@ -627,12 +640,15 @@ button {
 	gap: 1rem;
 }
 
-.task-view .tasks .task-container > .right .action-buttons #delete-task {
-	background-color: tomato;
+.task-view .tasks .task-container > .right .action-buttons #delete-task,
+.task-view .tasks .task-container > .right .action-buttons #edit-task {
+	background-color: transparent;
+	border: none;
 }
 
-.task-view .tasks .task-container > .right .action-buttons #edit-task {
-	background-color: greenyellow;
+.task-view .tasks .task-container > .right .action-buttons #delete-task:hover,
+.task-view .tasks .task-container > .right .action-buttons #edit-task:hover {
+	background-color: var(--bg-color);
 }
 
 .footer {

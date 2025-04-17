@@ -3,6 +3,10 @@
 
 import '../style.css';
 
+import folderIcon from '../components/icons/folder.svg';
+import editIcon from '../components/icons/edit.svg';
+import deleteIcon from '../components/icons/delete.svg';
+
 import Controller from './controller';
 import { demoProject } from './project';
 import Task from './task';
@@ -241,7 +245,13 @@ const taskManager = (function () {
 		const editTaskButton = document.createElement('button');
 		editTaskButton.type = 'button';
 		editTaskButton.id = 'edit-task';
-		editTaskButton.innerText = 'Edit';
+
+		const editTaskIcon = document.createElement('img');
+		editTaskIcon.classList.add('edit-task-icon');
+		editTaskIcon.src = editIcon;
+
+		editTaskButton.appendChild(editTaskIcon);
+
 		editTaskButton.addEventListener('click', (event) => {
 			event.stopPropagation();
 
@@ -263,7 +273,13 @@ const taskManager = (function () {
 		const deleteTaskButton = document.createElement('button');
 		deleteTaskButton.type = 'button';
 		deleteTaskButton.id = 'delete-task';
-		deleteTaskButton.innerText = 'Delete';
+
+		const deleteTaskIcon = document.createElement('img');
+		deleteTaskIcon.classList.add('delete-task-icon');
+		deleteTaskIcon.src = deleteIcon;
+
+		deleteTaskButton.appendChild(deleteTaskIcon);
+
 		deleteTaskButton.addEventListener('click', () => {
 			controller.removeTaskFromProject(task, controller.activeProject);
 			tasksContainer.removeChild(taskContainer);
@@ -378,6 +394,10 @@ const projectManager = (function () {
 			setProjectAsActive(project, projectContainer);
 		});
 
+		const projectIcon = document.createElement('img');
+		projectIcon.classList.add('project-icon');
+		projectIcon.src = folderIcon;
+
 		const leftSide = document.createElement('div');
 		leftSide.classList.add('left');
 		const projectNameElement = document.createElement('p');
@@ -388,7 +408,13 @@ const projectManager = (function () {
 		rightSide.classList.add('right');
 		const editButton = document.createElement('button');
 		editButton.id = 'edit-project';
-		editButton.innerText = 'Edit';
+
+		const editProjectIcon = document.createElement('img');
+		editProjectIcon.classList.add('edit-project-icon');
+		editProjectIcon.src = editIcon;
+
+		editButton.appendChild(editProjectIcon);
+
 		editButton.addEventListener('click', (event) => {
 			event.stopPropagation();
 
@@ -406,7 +432,13 @@ const projectManager = (function () {
 
 		const deleteButton = document.createElement('button');
 		deleteButton.id = 'delete-project';
-		deleteButton.innerText = 'Delete';
+
+		const deleteProjectIcon = document.createElement('img');
+		deleteProjectIcon.classList.add('delete-project-icon');
+		deleteProjectIcon.src = deleteIcon;
+
+		deleteButton.appendChild(deleteProjectIcon);
+
 		deleteButton.addEventListener('click', (event) => {
 			event.stopPropagation();
 
@@ -422,7 +454,7 @@ const projectManager = (function () {
 
 		rightSide.append(editButton, deleteButton);
 
-		projectContainer.append(leftSide, rightSide);
+		projectContainer.append(projectIcon, leftSide, rightSide);
 
 		projectsContainer.appendChild(projectContainer);
 
