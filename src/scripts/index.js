@@ -1,6 +1,5 @@
 // TODO: implement project editing
 // TODO: implement task editing
-// TODO: When a project is deleted, automatically set the active project to the next project in the projects array
 
 import '../style.css';
 
