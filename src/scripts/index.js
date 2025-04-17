@@ -58,6 +58,9 @@ const themeManager = (function () {
 const ModalManager = (function () {
 	// New Project Modal
 	newProjectButton.addEventListener('click', () => {
+		document.querySelector('#project-name-input').value = '';
+		document.querySelector('#project-description-input').value = '';
+
 		modalContainer.classList.add('active');
 		projectCreateModal.classList.add('active');
 	});
@@ -68,6 +71,9 @@ const ModalManager = (function () {
 	});
 
 	// New Task Modal
+	document.querySelector('#task-name-input').value = '';
+	document.querySelector('#task-description-input').value = '';
+
 	newTaskButton.addEventListener('click', () => {
 		modalContainer.classList.add('active');
 		taskCreateModal.classList.add('active');
