@@ -4,6 +4,9 @@
 	--bg-color-accent: #e7e7e7;
 	--text-color: #000000;
 
+	--filter: invert(0%) sepia(8%) saturate(7469%) hue-rotate(355deg)
+		brightness(90%) contrast(110%);
+
 	--font: sans-serif, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
 		'Lucida Sans Unicode', Geneva, Verdana;
 
@@ -15,6 +18,9 @@
 	--bg-color-secondary: #292929;
 	--bg-color-accent: #383838;
 	--text-color: #ffffff;
+
+	--filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
+		brightness(102%) contrast(102%);
 }
 
 ::-webkit-scrollbar {
@@ -46,6 +52,8 @@ body {
 	font-family: sans-serif, 'Lucida Sans', 'Lucida Sans Regular',
 		'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 	font-weight: normal;
+
+	transition: color 500ms ease-in-out;
 }
 
 h1 {
@@ -71,7 +79,7 @@ button {
 }
 
 .seperator {
-	border: 1px solid black;
+	border: 1px solid var(--text-color);
 	width: 5px;
 	margin: 0 10px;
 }
@@ -223,7 +231,7 @@ button {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(0, 0, 0, 0.7);
 	transition: opacity 0.3s ease;
 }
 
@@ -281,7 +289,7 @@ button {
 
 .modal-container .create-project-modal .bottom .project-details input {
 	outline: none;
-	border: 1px solid black;
+	border: 1px solid var(--text-color);
 	border-radius: 5px;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -291,8 +299,12 @@ button {
 	padding: 10px;
 	font-weight: bold;
 	color: var(--text-color);
-	background-color: green;
+	background-color: transparent;
 	transition: color 0.3s ease-in-out;
+}
+
+.modal-container .create-project-modal .bottom .project-details button:hover {
+	background-color: var(--bg-color-secondary);
 }
 
 /* Create task modal */
@@ -345,7 +357,7 @@ button {
 .modal-container .create-task-modal .bottom .task-details input,
 .modal-container .create-task-modal .bottom .task-details select {
 	outline: none;
-	border: 1px solid black;
+	border: 1px solid var(--text-color);
 	border-radius: 5px;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -355,8 +367,12 @@ button {
 	padding: 10px;
 	font-weight: bold;
 	color: var(--text-color);
-	background-color: green;
+	background-color: transparent;
 	transition: color 0.3s ease-in-out;
+}
+
+.modal-container .create-task-modal .bottom .task-details button {
+	background-color: var(--bg-color-secondary);
 }
 
 /* Edit project modal */
@@ -408,7 +424,7 @@ button {
 
 .modal-container .edit-project-modal .bottom .edit-project-details input {
 	outline: none;
-	border: 1px solid black;
+	border: 1px solid var(--text-color);
 	border-radius: 5px;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -418,8 +434,16 @@ button {
 	padding: 10px;
 	font-weight: bold;
 	color: var(--text-color);
-	background-color: green;
+	background-color: transparent;
 	transition: color 0.3s ease-in-out;
+}
+
+.modal-container
+	.edit-project-modal
+	.bottom
+	.edit-project-details
+	button:hover {
+	background-color: var(--bg-color-secondary);
 }
 
 /* Edit task modal */
@@ -472,7 +496,7 @@ button {
 .modal-container .edit-task-modal .bottom .edit-task-details input,
 .modal-container .edit-task-modal .bottom .edit-task-details select {
 	outline: none;
-	border: 1px solid black;
+	border: 1px solid var(--text-color);
 	border-radius: 5px;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -482,8 +506,12 @@ button {
 	padding: 10px;
 	font-weight: bold;
 	color: var(--text-color);
-	background-color: green;
+	background-color: transparent;
 	transition: color 0.3s ease-in-out;
+}
+
+.modal-container .edit-task-modal .bottom .edit-task-details button:hover {
+	background-color: var(--bg-color-secondary);
 }
 
 .content {
@@ -656,10 +684,36 @@ button {
 	padding: 10px 0;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	background-color: var(--bg-color-secondary);
+}
+
+.footer .left,
+.footer .middle,
+.footer .right {
+	width: 100%;
+}
+
+.footer .middle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer #toggle-theme {
+	fill: var(--bg-color);
+}
+
+.footer button {
+	border: none;
+	background-color: transparent;
 }
 
 .footer img {
 	margin: 0 10px;
+	height: 30px;
+}
+
+.icon {
+	filter: var(--filter);
 }

@@ -11,6 +11,8 @@ import Controller from './controller';
 import { demoProject } from './project';
 import Task from './task';
 
+const themeButton = document.querySelector('#toggle-theme');
+
 const modalContainer = document.querySelector('.modal-container');
 
 const projectsContainer = document.querySelector('.projects');
@@ -46,6 +48,12 @@ const closeTaskEditModal = document.querySelector('#close-task-editting-modal');
 const editTaskForm = document.querySelector('.edit-task-details');
 
 const controller = new Controller();
+
+const themeManager = (function () {
+	themeButton.addEventListener('click', () => {
+		document.body.classList.toggle('dark-theme');
+	});
+})();
 
 const ModalManager = (function () {
 	// New Project Modal
@@ -248,6 +256,7 @@ const taskManager = (function () {
 
 		const editTaskIcon = document.createElement('img');
 		editTaskIcon.classList.add('edit-task-icon');
+		editTaskIcon.classList.add('icon');
 		editTaskIcon.src = editIcon;
 
 		editTaskButton.appendChild(editTaskIcon);
@@ -276,6 +285,7 @@ const taskManager = (function () {
 
 		const deleteTaskIcon = document.createElement('img');
 		deleteTaskIcon.classList.add('delete-task-icon');
+		deleteTaskIcon.classList.add('icon');
 		deleteTaskIcon.src = deleteIcon;
 
 		deleteTaskButton.appendChild(deleteTaskIcon);
@@ -396,6 +406,7 @@ const projectManager = (function () {
 
 		const projectIcon = document.createElement('img');
 		projectIcon.classList.add('project-icon');
+		projectIcon.classList.add('icon');
 		projectIcon.src = folderIcon;
 
 		const leftSide = document.createElement('div');
@@ -411,6 +422,7 @@ const projectManager = (function () {
 
 		const editProjectIcon = document.createElement('img');
 		editProjectIcon.classList.add('edit-project-icon');
+		editProjectIcon.classList.add('icon');
 		editProjectIcon.src = editIcon;
 
 		editButton.appendChild(editProjectIcon);
@@ -435,6 +447,7 @@ const projectManager = (function () {
 
 		const deleteProjectIcon = document.createElement('img');
 		deleteProjectIcon.classList.add('delete-project-icon');
+		deleteProjectIcon.classList.add('icon');
 		deleteProjectIcon.src = deleteIcon;
 
 		deleteButton.appendChild(deleteProjectIcon);
