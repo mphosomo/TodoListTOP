@@ -182,8 +182,11 @@ const taskManager = (function () {
 		taskCompleteCheckbox.name = 'task-complete';
 		taskCompleteCheckbox.id = 'task-complete';
 		taskCompleteCheckbox.classList.add('task-complete');
+		taskCompleteCheckbox.checked = task.isComplete;
 		taskCompleteCheckbox.addEventListener('click', (event) => {
 			event.stopPropagation();
+
+			controller.activeProject.completeTask(task.taskId);
 		});
 
 		outsideLeftTopRight.appendChild(taskCompleteCheckbox);

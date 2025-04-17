@@ -24,6 +24,16 @@ export default class Project {
 		this.tasks.splice(taskToDelete, 1);
 	}
 
+	completeTask(taskId) {
+		const taskToComplete = this.tasks.find(
+			(task) => (task.taskId = taskId)
+		);
+
+		taskToComplete.toggleCompletedStatus();
+
+		console.log(this.tasks);
+	}
+
 	getTasks() {
 		return this.tasks;
 	}
