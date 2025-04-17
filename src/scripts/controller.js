@@ -16,6 +16,17 @@ export default class Controller {
 		return newProject;
 	}
 
+	editProjectDetails(projectId, name, description) {
+		const projectToEdit = this.projects.find(
+			(project) => project.projectId === projectId
+		);
+
+		projectToEdit.name = name;
+		projectToEdit.description = description;
+
+		console.log(this.projects);
+	}
+
 	setActiveProject(projectId) {
 		this.activeProject = this.projects.find(
 			(project) => project.projectId === projectId

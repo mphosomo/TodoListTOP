@@ -19,6 +19,13 @@ const closeProjectCreateModal = document.querySelector(
 );
 const projectForm = document.querySelector('.project-details');
 
+const projectEditModal = document.querySelector('.edit-project-modal');
+const closeProjectEditModal = document.querySelector(
+	'#close-project-editing-modal'
+);
+
+const editProjectForm = document.querySelector('.edit-project-details');
+
 const tasksContainer = document.querySelector('.tasks');
 let tasks = document.querySelectorAll('.task-container');
 
@@ -31,7 +38,7 @@ const taskForm = document.querySelector('.task-details');
 
 const controller = new Controller();
 
-const modalManager = (function () {
+const creationModalManager = (function () {
 	// New Project Modal
 	newProjectButton.addEventListener('click', () => {
 		modalContainer.classList.add('active');
@@ -52,6 +59,12 @@ const modalManager = (function () {
 	closeTaskCreateModal.addEventListener('click', () => {
 		modalContainer.classList.remove('active');
 		taskCreateModal.classList.remove('active');
+	});
+
+	// Edit Project Modal
+	closeProjectEditModal.addEventListener('click', () => {
+		modalContainer.classList.remove('active');
+		projectEditModal.classList.remove('active');
 	});
 })();
 
@@ -217,6 +230,8 @@ const taskManager = (function () {
 })();
 
 const projectManager = (function () {
+	let projectBeingEditted;
+
 	// Creating a new project
 	projectForm.addEventListener('submit', (e) => {
 		e.preventDefault();
@@ -242,6 +257,32 @@ const projectManager = (function () {
 		projectCreateModal.classList.remove('active');
 	});
 
+	editProjectForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+
+		const newProjectName = document.querySelector(
+			'#edit-project-name-input'
+		).value;
+		const newProjectDescription = document.querySelector(
+			'#edit-project-description-input'
+		).value;
+
+		controller.editProjectDetails(
+			projectBeingEditted.projectId,
+			newProjectName,
+			newProjectDescription
+		);
+
+		modalContainer.classList.remove('active');
+		projectEditModal.classList.remove('active');
+
+		displayEdittedChanges(
+			projectBeingEditted,
+			newProjectName,
+			newProjectDescription
+		);
+	});
+
 	function renderProject(project) {
 		const projectContainer = document.createElement('div');
 		projectContainer.classList.add('project-container');
@@ -262,6 +303,21 @@ const projectManager = (function () {
 		const editButton = document.createElement('button');
 		editButton.id = 'edit-project';
 		editButton.innerText = 'Edit';
+		editButton.addEventListener('click', (event) => {
+			event.stopPropagation();
+
+			// For tracking reasons
+			projectBeingEditted = project;
+
+			document.querySelector('#edit-project-name-input').value =
+				project.name;
+			document.querySelector('#edit-project-description-input').value =
+				project.description;
+
+			modalContainer.classList.add('active');
+			projectEditModal.classList.add('active');
+		});
+
 		const deleteButton = document.createElement('button');
 		deleteButton.id = 'delete-project';
 		deleteButton.innerText = 'Delete';
@@ -349,6 +405,24 @@ const projectManager = (function () {
 			project.getTasks().forEach((task) => {
 				taskManager.renderTask(task);
 			});
+		}
+	}
+
+	function displayEdittedChanges(project, name, description) {
+		let NodeToEdit;
+
+		// I want to only change the details of what has been editted instead of rerendering the whole projects tab
+		projects.forEach((projectElement) => {
+			if (projectElement.id == project.projectId) {
+				NodeToEdit = projectElement;
+			}
+		});
+
+		NodeToEdit.querySelector('p').innerText = name;
+
+		// The details of the active project in the task view need to be updated if the project being edited is the active project
+		if (project === controller.activeProject) {
+			displayActiveProject(name, description);
 		}
 	}
 
