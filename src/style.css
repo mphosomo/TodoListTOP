@@ -553,6 +553,12 @@ button {
 
 .task-view > .top .right button {
 	background-color: var(--primary-color);
+	height: 50px;
+	width: 100px;
+}
+
+.task-view > .top .right button:hover {
+	background-color: var(--bg-color-accent);
 }
 
 .task-view .tasks {
