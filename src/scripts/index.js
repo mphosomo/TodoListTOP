@@ -88,7 +88,7 @@ const themeManager = (function () {
 	}
 
 	themeButton.addEventListener('click', () => {
-		isDarkMode = !isDarkMode; // <- this actually toggles the value
+		isDarkMode = !isDarkMode;
 
 		localStorage.setItem('isDarkMode', isDarkMode);
 
