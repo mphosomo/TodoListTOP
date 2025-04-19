@@ -1,6 +1,3 @@
-// TODO: implement project editing
-// TODO: implement task editing
-
 import '../style.css';
 
 import folderIcon from '../components/icons/folder.svg';
@@ -8,7 +5,6 @@ import editIcon from '../components/icons/edit.svg';
 import deleteIcon from '../components/icons/delete.svg';
 
 import Controller from './controller';
-import { demoProject } from './project';
 import Task from './task';
 
 const themeButton = document.querySelector('#toggle-theme');
@@ -48,6 +44,39 @@ const closeTaskEditModal = document.querySelector('#close-task-editting-modal');
 const editTaskForm = document.querySelector('.edit-task-details');
 
 const controller = new Controller();
+
+document.addEventListener('DOMContentLoaded', () => {
+	controller.loadDataFromLocalStorage();
+
+	if (controller.projects.length === 0) {
+		const demoProject = controller.createProject(
+			'Demo Project',
+			'This is a demo project.'
+		);
+
+		controller.createTask(
+			demoProject,
+			new Task('Demo Task', 'This is a demo task.', 'High', '2025-12-05')
+		);
+
+		// This also updates localStorage
+		projectManager.setProjectAsActive(
+			demoProject,
+			projectManager.renderProject(demoProject)
+		);
+	} else {
+		controller.projects.forEach((project) => {
+			if (project === controller.activeProject) {
+				projectManager.setProjectAsActive(
+					project,
+					projectManager.renderProject(project)
+				);
+			} else {
+				projectManager.renderProject(project);
+			}
+		});
+	}
+});
 
 const themeManager = (function () {
 	themeButton.addEventListener('click', () => {
@@ -122,7 +151,7 @@ const taskManager = (function () {
 			taskDueDate
 		);
 
-		controller.addNewTaskToActiveProject(newTask);
+		controller.createTask(controller.activeProject, newTask);
 
 		// display the task as active after it has been created
 		setTaskAsActive(newTask, renderTask(newTask));
@@ -152,7 +181,7 @@ const taskManager = (function () {
 			'#edit-task-due-date-input'
 		).value;
 
-		controller.editTaskDetails(
+		controller.editTask(
 			taskBeingEditted.taskId,
 			newTaskName,
 			newTaskDescription,
@@ -297,7 +326,8 @@ const taskManager = (function () {
 		deleteTaskButton.appendChild(deleteTaskIcon);
 
 		deleteTaskButton.addEventListener('click', () => {
-			controller.removeTaskFromProject(task, controller.activeProject);
+			controller.deleteTask(task, controller.activeProject);
+
 			tasksContainer.removeChild(taskContainer);
 		});
 
@@ -359,7 +389,7 @@ const projectManager = (function () {
 			'#project-description-input'
 		).value;
 
-		const newProject = controller.createNewProject(
+		const newProject = controller.createProject(
 			projectName,
 			projectDescription
 		);
@@ -385,7 +415,7 @@ const projectManager = (function () {
 			'#edit-project-description-input'
 		).value;
 
-		controller.editProjectDetails(
+		controller.editProject(
 			projectBeingEditted.projectId,
 			newProjectName,
 			newProjectDescription
@@ -462,9 +492,16 @@ const projectManager = (function () {
 			event.stopPropagation();
 
 			// Only allow project deleting if there is at least 1 project
-			if (controller.projects.length > 1) {
+			// We only want to set a new project as active if the project being deleted is active
+			if (
+				controller.projects.length > 1 &&
+				project === controller.activeProject
+			) {
 				setNextProjectAsActive(controller.deleteProject(project));
 
+				projectsContainer.removeChild(projectContainer);
+			} else if (controller.projects.length > 1) {
+				controller.deleteProject(project);
 				projectsContainer.removeChild(projectContainer);
 			} else {
 				alert('There must be at least one project');
@@ -487,8 +524,13 @@ const projectManager = (function () {
 		let nextProject = controller.projects[0];
 
 		// we need to do this because if the number of projects in the array is 1, then we can only use the only project in the array as the next project
-		if (controller.projects.length > 1) {
+		if (
+			controller.projects.length > 1 &&
+			controller.projects[projectIndex] != null
+		) {
 			nextProject = controller.projects[projectIndex];
+		} else if (controller.projects.length > 1) {
+			nextProject = controller.projects[projectIndex - 1];
 		}
 
 		const nextProjectContainer = document.querySelector(
@@ -501,13 +543,14 @@ const projectManager = (function () {
 	function setProjectAsActive(project, container) {
 		setAllAsInactive(projects);
 		controller.setActiveProject(project.projectId);
+
 		container.classList.add('active');
 
 		removeTasksFromProjectDisplay();
 		displayActiveProject(project.name, project.description);
 
 		// display the tasks of the active project
-		if (project.getTasks().length != 0) {
+		if (project.tasks.length != 0) {
 			renderProjectTasks(project);
 		}
 	}
@@ -539,7 +582,7 @@ const projectManager = (function () {
 
 	function renderProjectTasks(project) {
 		if (project) {
-			project.getTasks().forEach((task) => {
+			project.tasks.forEach((task) => {
 				taskManager.renderTask(task);
 			});
 		}
@@ -563,18 +606,5 @@ const projectManager = (function () {
 		}
 	}
 
-	function initialRender() {
-		controller.projects.forEach((project) => {
-			// Setting the demo project as active
-			if (project.projectId === demoProject.projectId) {
-				setProjectAsActive(project, renderProject(project));
-			} else {
-				// For the rest of the projects(When localStorage is introduced), I want the projects to be rendered but not set to active
-				projects = renderProject(project);
-			}
-		});
-	}
-
-	// Rendering any pre-exsisting projects
-	initialRender();
+	return { setProjectAsActive, renderProject };
 })();

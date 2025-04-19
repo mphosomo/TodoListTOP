@@ -1,27 +1,25 @@
-import Task from './task.js';
-
-import { demoTask } from './task.js';
+function generateUUID() {
+	const randomId = crypto.randomUUID();
+	return (
+		'project-' +
+		randomId.substring(randomId.lastIndexOf('-') + 1, randomId.length)
+	);
+}
 
 export default class Project {
-	constructor(name, description) {
-		const randomId = crypto.randomUUID();
-		this.projectId =
-			'project-' +
-			randomId.substring(randomId.lastIndexOf('-') + 1, randomId.length);
+	constructor(name, description, projectId = null) {
+		this.projectId = projectId || generateUUID();
 		this.name = name;
 		this.description = description;
 		this.tasks = [];
 	}
 
-	addTask(name, description, priority, dueDate) {
-		const task = new Task(name, description, priority, dueDate);
-		this.tasks.push(task);
-	}
+	removeTask(task) {
+		const indexOfTaskToDelete = this.tasks.indexOf(task);
 
-	removeTask(taskId) {
-		const taskToDelete = this.tasks.find((task) => task.taskId == taskId);
+		this.tasks.splice(indexOfTaskToDelete, 1);
 
-		this.tasks.splice(taskToDelete, 1);
+		console.log(this.tasks);
 	}
 
 	completeTask(taskId) {
@@ -30,27 +28,5 @@ export default class Project {
 		);
 
 		taskToComplete.toggleCompletedStatus();
-
-		console.log(this.tasks);
-	}
-
-	getTasks() {
-		return this.tasks;
-	}
-
-	toString() {
-		return `Project ID: ${this.projectId}\nName: ${this.name}\nDescription: ${this.description}`;
 	}
 }
-
-export const demoProject = new Project(
-	'Demo Project',
-	'This is a demo project'
-);
-
-demoProject.addTask(
-	demoTask.name,
-	demoTask.description,
-	demoTask.priority,
-	demoTask.dueDate
-);
