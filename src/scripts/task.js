@@ -5,13 +5,20 @@ function generateUUID() {
 }
 
 export default class Task {
-	constructor(name, description, priority, dueDate, taskId = null) {
+	constructor(
+		name,
+		description,
+		priority,
+		dueDate,
+		taskId = null,
+		isComplete = false
+	) {
 		this.taskId = taskId || generateUUID;
 		this.name = name;
 		this.description = description;
 		this.priority = priority;
 		this.dueDate = dueDate;
-		this.isComplete = false;
+		this.isComplete = isComplete;
 	}
 
 	toggleCompletedStatus() {

@@ -45,7 +45,8 @@ export default class Controller {
 			task.description,
 			task.priority,
 			task.dueDate,
-			task.id
+			task.id,
+			task.isComplete
 		);
 
 		project.tasks.push(newTask);

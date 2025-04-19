@@ -18,8 +18,6 @@ export default class Project {
 		const indexOfTaskToDelete = this.tasks.indexOf(task);
 
 		this.tasks.splice(indexOfTaskToDelete, 1);
-
-		console.log(this.tasks);
 	}
 
 	completeTask(taskId) {

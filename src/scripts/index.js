@@ -246,6 +246,8 @@ const taskManager = (function () {
 			event.stopPropagation();
 
 			controller.activeProject.completeTask(task.taskId);
+
+			controller.saveToLocalStorage();
 		});
 
 		outsideLeftTopRight.appendChild(taskCompleteCheckbox);
