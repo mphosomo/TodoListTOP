@@ -79,7 +79,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const themeManager = (function () {
+	let isDarkMode = false;
+
+	// Load saved theme from localStorage
+	if (localStorage.getItem('isDarkMode') === 'true') {
+		isDarkMode = true;
+		document.body.classList.add('dark-theme');
+	}
+
 	themeButton.addEventListener('click', () => {
+		isDarkMode = !isDarkMode; // <- this actually toggles the value
+
+		localStorage.setItem('isDarkMode', isDarkMode);
+
 		document.body.classList.toggle('dark-theme');
 	});
 })();
