@@ -2,12 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	mode: 'production',
+	mode: 'development',
 	entry: './src/scripts/index.js',
 	output: {
 		filename: 'main.js',
 		path: path.resolve(__dirname, 'dist'),
-		publicPath: './',
+		publicPath: '/TodoListTOP/',
 		clean: true,
 	},
 	devtool: 'eval-source-map',

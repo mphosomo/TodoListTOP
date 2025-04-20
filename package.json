@@ -3,14 +3,18 @@
 	"version": "1.0.0",
 	"description": "Todo List Project for TOP",
 	"main": "index.js",
+	"homepage": "https://mphosomo.github.io/TodoListTOP/",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "npx webpack serve"
+		"build": "webpack --mode production",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
 	},
 	"author": "Mpho Somo",
 	"license": "ISC",
 	"devDependencies": {
 		"css-loader": "^7.1.2",
+		"gh-pages": "^6.3.0",
 		"html-loader": "^5.1.0",
 		"html-webpack-plugin": "^5.6.0",
 		"style-loader": "^4.0.0",
