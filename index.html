@@ -1,1 +1,331 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>TooDue | TOP Todo List Project</title><script defer="defer" src="/TodoListTOP/main.js"></script></head><body><div class="container"><aside class="sidebar"><div class="top"><div class="heading"><div class="left"><h1>Projects</h1></div><div class="right"><button type="button" id="sidebar-collapse"><img src="/TodoListTOP/c00386a462309db35560.svg" alt="Sidebar collapse button" class="icon"/></button></div></div><div class="breaker"></div><div class="projects"></div></div><div class="bottom"><button type="button" id="add-new-project">New Project</button></div></aside><div class="content"><main class="task-view"><div class="top"><div class="left"><button type="button" id="sidebar-collapse"><img src="/TodoListTOP/c00386a462309db35560.svg" alt="Sidebar collapse button" class="icon"/></button><div class="right"><h1 class="project-title"></h1><p class="project-description"></p></div></div><div class="right"><button type="button" id="add-new-task">New Task</button></div></div><div class="tasks"></div></main><footer class="footer"><div class="left"><button type="button" id="toggle-theme"><img src="/TodoListTOP/ca8a66927a30f5290ce7.svg" alt="theme button" class="icon"/></button></div><div class="middle">Copyright &copy; 2025 <a href="https://github.com/mphosomo" target="_blank"><img height="30" src="/TodoListTOP/7615be16eed41f806def.png" alt="Github Image" class="icon"/></a></div><div class="right"></div></footer></div><div class="modal-container"><div class="create-project-modal"><div class="top"><div class="left"><h2>Create Project</h2></div><div class="right"><button type="button" id="close-project-creation-modal">&times;</button></div></div><div class="breaker"></div><div class="bottom"><form class="project-details"><label for="project-name-input">Name:</label> <input name="name" id="project-name-input" maxlength="50" autocomplete="off" placeholder="Enter a project name" required/> <label for="project-description-input">Description:</label> <input name="description" id="project-description-input" placeholder="Enter a project description" autocomplete="off"/> <button type="submit" id="create-project">Create</button></form></div></div><div class="create-task-modal"><div class="top"><div class="left"><h2>Create Task</h2></div><div class="right"><button type="button" id="close-task-creation-modal">&times;</button></div></div><div class="breaker"></div><div class="bottom"><form class="task-details"><label for="task-name-input">Name:</label> <input name="name" id="task-name-input" maxlength="50" autocomplete="off" placeholder="Enter a task name" required/> <label for="task-description-input">Description:</label> <input name="description" id="task-description-input" placeholder="Enter a task description" autocomplete="off"/> <label for="task-priority-input">Priority:</label> <select name="priority" id="task-priority-input"><option value="High">High</option><option value="Medium">Medium</option><option value="Low">Low</option></select> <label for="task-due-date-input">Due Date:</label> <input type="date" name="due-date" id="task-due-date-input" required/> <button type="submit" id="create-task">Create</button></form></div></div><div class="edit-project-modal"><div class="top"><div class="left"><h2>Edit Project</h2></div><div class="right"><button type="button" id="close-project-editing-modal">&times;</button></div></div><div class="breaker"></div><div class="bottom"><form class="edit-project-details"><label for="edit-project-name-input">Name:</label> <input name="name" id="edit-project-name-input" maxlength="50" autocomplete="off" placeholder="Enter a project name" required/> <label for="edit-project-description-input">Description:</label> <input name="description" id="edit-project-description-input" placeholder="Enter a project description" autocomplete="off"/> <button type="submit" id="edit-project">Edit</button></form></div></div><div class="edit-task-modal"><div class="top"><div class="left"><h2>Edit Task</h2></div><div class="right"><button type="button" id="close-task-editting-modal">&times;</button></div></div><div class="breaker"></div><div class="bottom"><form class="edit-task-details"><label for="edit-task-name-input">Name:</label> <input name="name" id="edit-task-name-input" maxlength="50" autocomplete="off" placeholder="Enter a task name" required/> <label for="edit-task-description-input">Description:</label> <input name="description" id="edit-task-description-input" placeholder="Enter a task description" autocomplete="off"/> <label for="edit-task-priority-input">Priority:</label> <select name="priority" id="edit-task-priority-input"><option value="High">High</option><option value="Medium">Medium</option><option value="Low">Low</option></select> <label for="edit-task-due-date-input">Due Date:</label> <input type="date" name="due-date" id="edit-task-due-date-input" required/> <button type="submit" id="edit-task">Edit</button></form></div></div></div></div><script src="/TodoListTOP/5d817815f9d1aa5a022c.js" type="module"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>TooDue | TOP Todo List Project</title>
+	<script defer src="/TodoListTOP/main.js"></script></head>
+	<body>
+		<div class="container">
+			<aside class="sidebar">
+				<div class="top">
+					<div class="heading">
+						<div class="left">
+							<h1>Projects</h1>
+						</div>
+
+						<div class="right">
+							<button type="button" id="sidebar-collapse">
+								<img
+									src="/TodoListTOP/c00386a462309db35560.svg"
+									alt="Sidebar collapse button"
+									class="icon"
+								/>
+							</button>
+						</div>
+					</div>
+
+					<div class="breaker"></div>
+
+					<div class="projects"></div>
+				</div>
+
+				<div class="bottom">
+					<button type="button" id="add-new-project">
+						New Project
+					</button>
+				</div>
+			</aside>
+
+			<div class="content">
+				<main class="task-view">
+					<div class="top">
+						<div class="left">
+							<button type="button" id="sidebar-collapse">
+								<img
+									src="/TodoListTOP/c00386a462309db35560.svg"
+									alt="Sidebar collapse button"
+									class="icon"
+								/>
+							</button>
+
+							<div class="right">
+								<h1 class="project-title"></h1>
+								<p class="project-description"></p>
+							</div>
+						</div>
+
+						<div class="right">
+							<button type="button" id="add-new-task">
+								New Task
+							</button>
+						</div>
+					</div>
+
+					<div class="tasks"></div>
+				</main>
+
+				<footer class="footer">
+					<div class="left">
+						<button type="button" id="toggle-theme">
+							<img
+								src="/TodoListTOP/ca8a66927a30f5290ce7.svg"
+								alt="theme button"
+								class="icon"
+							/>
+						</button>
+					</div>
+
+					<div class="middle">
+						Copyright &copy; 2025
+						<a href="https://github.com/mphosomo" target="_blank">
+							<img
+								height="30"
+								src="/TodoListTOP/7615be16eed41f806def.png"
+								alt="Github Image"
+								class="icon"
+							/>
+						</a>
+					</div>
+
+					<div class="right"></div>
+				</footer>
+			</div>
+
+			<div class="modal-container">
+				<div class="create-project-modal">
+					<div class="top">
+						<div class="left">
+							<h2>Create Project</h2>
+						</div>
+
+						<div class="right">
+							<button
+								type="button"
+								id="close-project-creation-modal"
+							>
+								&times;
+							</button>
+						</div>
+					</div>
+
+					<div class="breaker"></div>
+
+					<div class="bottom">
+						<form class="project-details">
+							<label for="project-name-input">Name:</label>
+							<input
+								type="text"
+								name="name"
+								id="project-name-input"
+								maxlength="50"
+								autocomplete="off"
+								placeholder="Enter a project name"
+								required
+							/>
+
+							<label for="project-description-input"
+								>Description:</label
+							>
+							<input
+								type="text"
+								name="description"
+								id="project-description-input"
+								placeholder="Enter a project description"
+								autocomplete="off"
+							/>
+
+							<button type="submit" id="create-project">
+								Create
+							</button>
+						</form>
+					</div>
+				</div>
+
+				<div class="create-task-modal">
+					<div class="top">
+						<div class="left">
+							<h2>Create Task</h2>
+						</div>
+
+						<div class="right">
+							<button
+								type="button"
+								id="close-task-creation-modal"
+							>
+								&times;
+							</button>
+						</div>
+					</div>
+
+					<div class="breaker"></div>
+
+					<div class="bottom">
+						<form class="task-details">
+							<label for="task-name-input">Name:</label>
+							<input
+								type="text"
+								name="name"
+								id="task-name-input"
+								maxlength="50"
+								autocomplete="off"
+								placeholder="Enter a task name"
+								required
+							/>
+
+							<label for="task-description-input"
+								>Description:</label
+							>
+							<input
+								type="text"
+								name="description"
+								id="task-description-input"
+								placeholder="Enter a task description"
+								autocomplete="off"
+							/>
+
+							<label for="task-priority-input">Priority:</label>
+							<select name="priority" id="task-priority-input">
+								<option value="High">High</option>
+								<option value="Medium">Medium</option>
+								<option value="Low">Low</option>
+							</select>
+
+							<label for="task-due-date-input">Due Date:</label>
+							<input
+								type="date"
+								name="due-date"
+								id="task-due-date-input"
+								required
+							/>
+
+							<button type="submit" id="create-task">
+								Create
+							</button>
+						</form>
+					</div>
+				</div>
+
+				<div class="edit-project-modal">
+					<div class="top">
+						<div class="left">
+							<h2>Edit Project</h2>
+						</div>
+
+						<div class="right">
+							<button
+								type="button"
+								id="close-project-editing-modal"
+							>
+								&times;
+							</button>
+						</div>
+					</div>
+
+					<div class="breaker"></div>
+
+					<div class="bottom">
+						<form class="edit-project-details">
+							<label for="edit-project-name-input">Name:</label>
+							<input
+								type="text"
+								name="name"
+								id="edit-project-name-input"
+								maxlength="50"
+								autocomplete="off"
+								placeholder="Enter a project name"
+								required
+							/>
+
+							<label for="edit-project-description-input"
+								>Description:</label
+							>
+							<input
+								type="text"
+								name="description"
+								id="edit-project-description-input"
+								placeholder="Enter a project description"
+								autocomplete="off"
+							/>
+
+							<button type="submit" id="edit-project">
+								Edit
+							</button>
+						</form>
+					</div>
+				</div>
+
+				<div class="edit-task-modal">
+					<div class="top">
+						<div class="left">
+							<h2>Edit Task</h2>
+						</div>
+
+						<div class="right">
+							<button
+								type="button"
+								id="close-task-editting-modal"
+							>
+								&times;
+							</button>
+						</div>
+					</div>
+
+					<div class="breaker"></div>
+
+					<div class="bottom">
+						<form class="edit-task-details">
+							<label for="edit-task-name-input">Name:</label>
+							<input
+								type="text"
+								name="name"
+								id="edit-task-name-input"
+								maxlength="50"
+								autocomplete="off"
+								placeholder="Enter a task name"
+								required
+							/>
+
+							<label for="edit-task-description-input"
+								>Description:</label
+							>
+							<input
+								type="text"
+								name="description"
+								id="edit-task-description-input"
+								placeholder="Enter a task description"
+								autocomplete="off"
+							/>
+
+							<label for="edit-task-priority-input"
+								>Priority:</label
+							>
+							<select
+								name="priority"
+								id="edit-task-priority-input"
+							>
+								<option value="High">High</option>
+								<option value="Medium">Medium</option>
+								<option value="Low">Low</option>
+							</select>
+
+							<label for="edit-task-due-date-input"
+								>Due Date:</label
+							>
+							<input
+								type="date"
+								name="due-date"
+								id="edit-task-due-date-input"
+								required
+							/>
+
+							<button type="submit" id="edit-task">Edit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="/TodoListTOP/5d817815f9d1aa5a022c.js" type="module"></script>
+	</body>
+</html>
