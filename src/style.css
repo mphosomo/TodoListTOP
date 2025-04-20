@@ -115,6 +115,26 @@ button {
 	overflow: hidden;
 }
 
+.sidebar .top .heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.sidebar .top .heading button {
+	background-color: transparent;
+	border: none;
+	border-radius: 5px;
+}
+
+.sidebar .top .heading button:hover {
+	background-color: var(--bg-color-accent);
+}
+
+.sidebar .top .heading img {
+	height: 30px;
+}
+
 .sidebar .top .projects {
 	overflow-y: scroll;
 	overflow-x: hidden;
