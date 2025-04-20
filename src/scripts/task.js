@@ -13,7 +13,7 @@ export default class Task {
 		taskId = null,
 		isComplete = false
 	) {
-		this.taskId = taskId || generateUUID;
+		this.taskId = taskId || generateUUID();
 		this.name = name;
 		this.description = description;
 		this.priority = priority;
