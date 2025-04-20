@@ -45,6 +45,17 @@ const editTaskForm = document.querySelector('.edit-task-details');
 
 const controller = new Controller();
 
+const sidebar = document.querySelector('.sidebar');
+const container = document.querySelector('.container');
+const sidebarCollapseButtons = document.querySelectorAll('#sidebar-collapse');
+
+sidebarCollapseButtons.forEach((button) => {
+	button.addEventListener('click', () => {
+		sidebar.classList.toggle('collapse');
+		container.classList.toggle('expand-content');
+	});
+});
+
 document.addEventListener('DOMContentLoaded', () => {
 	controller.loadDataFromLocalStorage();
 

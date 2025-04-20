@@ -95,6 +95,19 @@ button {
 	background-color: var(--bg-color);
 }
 
+.container .content #sidebar-collapse {
+	display: none;
+}
+
+.container.expand-content {
+	grid-template-areas: 'content';
+	grid-template-columns: 1fr;
+}
+
+.container.expand-content #sidebar-collapse {
+	display: flex;
+}
+
 .sidebar {
 	display: flex;
 	flex-direction: column;
@@ -110,6 +123,10 @@ button {
 	overflow: hidden;
 }
 
+.sidebar.collapse {
+	display: none;
+}
+
 .sidebar .top {
 	padding: 10px;
 	overflow: hidden;
@@ -122,6 +139,9 @@ button {
 }
 
 .sidebar .top .heading button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: transparent;
 	border: none;
 	border-radius: 5px;
@@ -560,7 +580,28 @@ button {
 }
 
 .task-view > .top .left {
+	display: flex;
 	width: 80%;
+}
+
+.task-view > .top .left button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+	border: none;
+	border-radius: 5px;
+	width: 50px;
+	margin-right: 10px;
+}
+
+.task-view > .top .left button:hover {
+	background-color: var(--bg-color-accent);
+}
+
+.task-view > .top .left img {
+	height: 30px;
+	width: 30px;
 }
 
 .task-view > .top .left h1 {
